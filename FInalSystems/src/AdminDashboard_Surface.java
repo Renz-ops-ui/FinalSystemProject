@@ -1,3 +1,4 @@
+package mysystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,15 +45,15 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
         pnlMainDashboard = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsers = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         pnlContainer = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblAllUser = new javax.swing.JLabel();
+        txtInputSearchName = new javax.swing.JTextField();
         btnSearchUsername = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnDeleteUser = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTasks = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         pnlContainer2 = new javax.swing.JPanel();
         lblUserTasks = new javax.swing.JLabel();
@@ -67,7 +68,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(920, 650));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -93,24 +94,24 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        tblUsers.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tblUsers);
+        tblUsers.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tblUsers.getColumnModel().getColumnCount() > 0) {
+            tblUsers.getColumnModel().getColumn(0).setResizable(false);
+            tblUsers.getColumnModel().getColumn(1).setResizable(false);
+            tblUsers.getColumnModel().getColumn(2).setResizable(false);
+            tblUsers.getColumnModel().getColumn(3).setResizable(false);
+            tblUsers.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("All Users");
+        lblAllUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAllUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAllUser.setText("All Users");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Search username...");
+        txtInputSearchName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtInputSearchName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtInputSearchName.setText("Search username...");
 
         btnSearchUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSearchUsername.setText("Search");
@@ -127,9 +128,9 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAllUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(txtInputSearchName, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSearchUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -143,8 +144,8 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAllUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInputSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,7 +179,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             }
         });
         jTable2.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jTable2);
+        tblTasks.setViewportView(jTable2);
         jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setResizable(false);
@@ -225,7 +226,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             .addGroup(pnlMainDashboardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlMainDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(tblTasks)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlContainer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -243,7 +244,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlContainer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tblTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -326,7 +327,14 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
     
     private void loadAllUsers() {
-
+        DefaultTableModel model = (DefaultTableModel) tblUsers.getModel();
+        
+        model.setRowCount(0);
+        selectedUserIDs = -1;
+        
+//        String 
+        
+        
     }
     
     private void loadSummary(){
@@ -364,15 +372,12 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearchUsername;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAdminDashboard;
+    private javax.swing.JLabel lblAllUser;
     private javax.swing.JLabel lblLoggedAs;
     private javax.swing.JLabel lblTasksFor;
     private javax.swing.JLabel lblUserTasks;
@@ -380,5 +385,8 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
     private javax.swing.JPanel pnlContainer2;
     private javax.swing.JPanel pnlMainDashboard;
     private javax.swing.JPanel pnlTitle;
+    private javax.swing.JScrollPane tblTasks;
+    private javax.swing.JTable tblUsers;
+    private javax.swing.JTextField txtInputSearchName;
     // End of variables declaration//GEN-END:variables
 }

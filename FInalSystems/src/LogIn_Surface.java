@@ -1,4 +1,6 @@
+package mysystem;
 
+import java.awt.CardLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +19,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
         role: admin
     
      */
+    
+    private CardLayout layout;
+    
     private int loggedInUserID = -1;
     private String loggedInUsername = "";
 
@@ -28,9 +33,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         //Sets the size to be untangleable and in fixed size
         this.setResizable(false);
-        this.setMinimumSize(new java.awt.Dimension(420, 580));
-        this.setMaximumSize(new java.awt.Dimension(420, 580));
-        this.setPreferredSize(new java.awt.Dimension(420, 580));
+        this.setMinimumSize(new java.awt.Dimension(500, 450));
+        this.setMaximumSize(new java.awt.Dimension(500, 450));
+        this.setPreferredSize(new java.awt.Dimension(500, 450));
 
         //Sets the title to LogIn
         this.setTitle("Log In");
@@ -38,6 +43,10 @@ public class LogIn_Surface extends javax.swing.JFrame {
         //Shows or Hide the password when check
         chckbtnShowPassword.addActionListener(e
                 -> txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '\u2022'));
+        
+        layout = (CardLayout) pnlMain.getLayout();
+        
+        txtaAbout.setEditable(false);
     }
 
     /**
@@ -50,8 +59,16 @@ public class LogIn_Surface extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        LogInPanel = new javax.swing.JPanel();
+        pnlSide = new javax.swing.JPanel();
         LOGO = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        lblHomework = new javax.swing.JLabel();
+        btnAbout = new javax.swing.JButton();
+        lblTracker = new javax.swing.JLabel();
+        lblSystem = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        pnlMain = new javax.swing.JPanel();
+        pnlLogIn = new javax.swing.JPanel();
         lblWelcomeMSG = new javax.swing.JLabel();
         lblSignInMSG = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
@@ -60,111 +77,178 @@ public class LogIn_Surface extends javax.swing.JFrame {
         txtInputPassword = new javax.swing.JPasswordField();
         chckbtnShowPassword = new javax.swing.JCheckBox();
         btnLogIn = new javax.swing.JButton();
-        btnGoToSignUp = new javax.swing.JButton();
-        lblNoAccountYet = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lblNoAccountYet = new javax.swing.JLabel();
+        btnGoToSignUp = new javax.swing.JButton();
+        pnlAbout = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtaAbout = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        btnReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(420, 580));
-        setMinimumSize(new java.awt.Dimension(420, 580));
-        setPreferredSize(new java.awt.Dimension(420, 580));
+        setMaximumSize(new java.awt.Dimension(500, 450));
+        setMinimumSize(new java.awt.Dimension(500, 450));
+        setPreferredSize(new java.awt.Dimension(500, 450));
+        setSize(new java.awt.Dimension(500, 450));
 
-        LogInPanel.setMaximumSize(new java.awt.Dimension(360, 560));
-        LogInPanel.setMinimumSize(new java.awt.Dimension(360, 560));
-        LogInPanel.setPreferredSize(new java.awt.Dimension(360, 560));
-        LogInPanel.setLayout(new java.awt.GridBagLayout());
+        pnlSide.setMaximumSize(new java.awt.Dimension(160, 450));
+        pnlSide.setMinimumSize(new java.awt.Dimension(160, 450));
 
         LOGO.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LOGO.setText("LOGO");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
-        LogInPanel.add(LOGO, gridBagConstraints);
+
+        lblHomework.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHomework.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHomework.setText("Homework");
+
+        btnAbout.setText("About");
+        btnAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboutActionPerformed(evt);
+            }
+        });
+
+        lblTracker.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTracker.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTracker.setText("Tracker");
+
+        lblSystem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSystem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSystem.setText("System");
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout pnlSideLayout = new javax.swing.GroupLayout(pnlSide);
+        pnlSide.setLayout(pnlSideLayout);
+        pnlSideLayout.setHorizontalGroup(
+            pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHomework, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addComponent(lblTracker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(LOGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlSideLayout.setVerticalGroup(
+            pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSideLayout.createSequentialGroup()
+                        .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblHomework)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTracker)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSystem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                        .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3))
+                .addContainerGap())
+        );
+
+        getContentPane().add(pnlSide, java.awt.BorderLayout.LINE_START);
+
+        pnlMain.setMaximumSize(new java.awt.Dimension(340, 450));
+        pnlMain.setMinimumSize(new java.awt.Dimension(340, 450));
+        pnlMain.setPreferredSize(new java.awt.Dimension(340, 450));
+        pnlMain.setLayout(new java.awt.CardLayout());
+
+        pnlLogIn.setMaximumSize(new java.awt.Dimension(340, 450));
+        pnlLogIn.setMinimumSize(new java.awt.Dimension(340, 450));
+        pnlLogIn.setPreferredSize(new java.awt.Dimension(340, 450));
+        pnlLogIn.setLayout(new java.awt.GridBagLayout());
 
         lblWelcomeMSG.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblWelcomeMSG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcomeMSG.setText("Welcome Back!");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 2, 0);
-        LogInPanel.add(lblWelcomeMSG, gridBagConstraints);
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 18;
+        pnlLogIn.add(lblWelcomeMSG, gridBagConstraints);
 
         lblSignInMSG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSignInMSG.setText("Sign in to your account");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
-        LogInPanel.add(lblSignInMSG, gridBagConstraints);
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
+        pnlLogIn.add(lblSignInMSG, gridBagConstraints);
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblUsername.setText("USERNAME");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 2;
+        gridBagConstraints.ipadx = 45;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        LogInPanel.add(lblUsername, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
+        pnlLogIn.add(lblUsername, gridBagConstraints);
 
         txtInputUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtInputUsername.setText("Enter username");
+        txtInputUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInputUsernameActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 7, 0);
-        LogInPanel.add(txtInputUsername, gridBagConstraints);
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        pnlLogIn.add(txtInputUsername, gridBagConstraints);
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPassword.setText("PASSWORD");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 2;
+        gridBagConstraints.ipadx = 45;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        LogInPanel.add(lblPassword, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
+        pnlLogIn.add(lblPassword, gridBagConstraints);
 
         txtInputPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtInputPassword.setText("Enter password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 0);
-        LogInPanel.add(txtInputPassword, gridBagConstraints);
+        gridBagConstraints.ipadx = 45;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
+        pnlLogIn.add(txtInputPassword, gridBagConstraints);
 
         chckbtnShowPassword.setText("Show password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipady = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 12, 0);
-        LogInPanel.add(chckbtnShowPassword, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
+        pnlLogIn.add(chckbtnShowPassword, gridBagConstraints);
 
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLogIn.setText("Log In");
@@ -175,11 +259,26 @@ public class LogIn_Surface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 8, 0);
-        LogInPanel.add(btnLogIn, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
+        pnlLogIn.add(btnLogIn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(13, 0, 12, 0);
+        pnlLogIn.add(jSeparator1, gridBagConstraints);
+
+        lblNoAccountYet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNoAccountYet.setText("No account yet?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
+        pnlLogIn.add(lblNoAccountYet, gridBagConstraints);
 
         btnGoToSignUp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGoToSignUp.setText("Go to Sign Up");
@@ -190,32 +289,61 @@ public class LogIn_Surface extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        LogInPanel.add(btnGoToSignUp, gridBagConstraints);
-
-        lblNoAccountYet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNoAccountYet.setText("No account yet?");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        LogInPanel.add(lblNoAccountYet, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
-        LogInPanel.add(jSeparator1, gridBagConstraints);
+        gridBagConstraints.ipady = 10;
+        pnlLogIn.add(btnGoToSignUp, gridBagConstraints);
 
-        getContentPane().add(LogInPanel, java.awt.BorderLayout.CENTER);
+        pnlMain.add(pnlLogIn, "pnlLogIn");
+
+        pnlAbout.setMaximumSize(new java.awt.Dimension(340, 450));
+        pnlAbout.setMinimumSize(new java.awt.Dimension(340, 450));
+        pnlAbout.setPreferredSize(new java.awt.Dimension(340, 450));
+
+        txtaAbout.setColumns(20);
+        txtaAbout.setRows(5);
+        jScrollPane1.setViewportView(txtaAbout);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("About");
+
+        btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAboutLayout = new javax.swing.GroupLayout(pnlAbout);
+        pnlAbout.setLayout(pnlAboutLayout);
+        pnlAboutLayout.setHorizontalGroup(
+            pnlAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAboutLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        pnlAboutLayout.setVerticalGroup(
+            pnlAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlMain.add(pnlAbout, "pnlAbout");
+
+        getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,6 +388,21 @@ public class LogIn_Surface extends javax.swing.JFrame {
         new SignUp_Surface().setVisible(true);
 
     }//GEN-LAST:event_btnGoToSignUpActionPerformed
+
+    private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
+        // TODO add your handling code here:
+        layout.show(pnlMain, "pnlAbout");
+        
+    }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        // TODO add your handling code here:\
+        layout.show(pnlMain, "pnlLogIn");
+    }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void txtInputUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInputUsernameActionPerformed
 
     private String checkCredentials(String username, String password) {
         //Checks if the user input is within the system or not
@@ -320,17 +463,30 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LOGO;
-    private javax.swing.JPanel LogInPanel;
+    private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnGoToSignUp;
     private javax.swing.JButton btnLogIn;
+    private javax.swing.JButton btnReturn;
     private javax.swing.JCheckBox chckbtnShowPassword;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblHomework;
     private javax.swing.JLabel lblNoAccountYet;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSignInMSG;
+    private javax.swing.JLabel lblSystem;
+    private javax.swing.JLabel lblTracker;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcomeMSG;
+    private javax.swing.JPanel pnlAbout;
+    private javax.swing.JPanel pnlLogIn;
+    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlSide;
     private javax.swing.JPasswordField txtInputPassword;
     private javax.swing.JTextField txtInputUsername;
+    private javax.swing.JTextArea txtaAbout;
     // End of variables declaration//GEN-END:variables
 }

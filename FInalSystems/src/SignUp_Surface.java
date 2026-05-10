@@ -1,3 +1,4 @@
+package mysystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +18,9 @@ public class SignUp_Surface extends javax.swing.JFrame {
 
         //Sets the size to be untangleable and in fixed size
         this.setResizable(false);
-        this.setMinimumSize(new java.awt.Dimension(460, 580));
-        this.setMaximumSize(new java.awt.Dimension(460, 580));
-        this.setPreferredSize(new java.awt.Dimension(460, 580));
+        this.setMinimumSize(new java.awt.Dimension(500, 450));
+        this.setMaximumSize(new java.awt.Dimension(500, 450));
+        this.setPreferredSize(new java.awt.Dimension(500, 450));
 
         //Sets title to Sign Up
         this.setTitle("Sign Up");
@@ -40,119 +41,79 @@ public class SignUp_Surface extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         btngGender = new javax.swing.ButtonGroup();
         SignUpPanel = new javax.swing.JPanel();
         LOGO = new javax.swing.JLabel();
         lblCreateMSG = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         lblRegisterMSG = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
+        pnlSignUp = new javax.swing.JPanel();
         txtInputUsername = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
+        lblBirthday = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
         txtInputPassword = new javax.swing.JPasswordField();
         chckbtnShowPassword = new javax.swing.JCheckBox();
+        lblGender = new javax.swing.JLabel();
+        rbtnFemale = new javax.swing.JRadioButton();
+        rbtnMale = new javax.swing.JRadioButton();
+        spnSelectBirthday = new javax.swing.JSpinner();
         btnCreateAccount = new javax.swing.JButton();
         btnGoToLogIn = new javax.swing.JButton();
-        spnSelectBirthday = new javax.swing.JSpinner();
-        rbtnMale = new javax.swing.JRadioButton();
-        rbtnFemale = new javax.swing.JRadioButton();
-        lblBirthday = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
         lblAlreadyHaveAnAccount = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(440, 520));
+        setMaximumSize(new java.awt.Dimension(500, 450));
+        setMinimumSize(new java.awt.Dimension(500, 450));
+        setSize(new java.awt.Dimension(500, 450));
 
-        SignUpPanel.setMaximumSize(new java.awt.Dimension(360, 560));
-        SignUpPanel.setMinimumSize(new java.awt.Dimension(360, 560));
-        SignUpPanel.setPreferredSize(new java.awt.Dimension(360, 560));
-        SignUpPanel.setLayout(new java.awt.GridBagLayout());
+        SignUpPanel.setMaximumSize(new java.awt.Dimension(500, 450));
+        SignUpPanel.setMinimumSize(new java.awt.Dimension(500, 450));
+        SignUpPanel.setPreferredSize(new java.awt.Dimension(500, 450));
 
         LOGO.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LOGO.setText("LOGO");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(27, 27, 27, 27);
-        SignUpPanel.add(LOGO, gridBagConstraints);
 
         lblCreateMSG.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCreateMSG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCreateMSG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCreateMSG.setText("Create Account");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        SignUpPanel.add(lblCreateMSG, gridBagConstraints);
 
-        lblRegisterMSG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRegisterMSG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblRegisterMSG.setText("Register your account");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 15, 0);
-        SignUpPanel.add(lblRegisterMSG, gridBagConstraints);
 
-        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUsername.setText("USERNAME");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
-        SignUpPanel.add(lblUsername, gridBagConstraints);
+        pnlSignUp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         txtInputUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 15, 5);
-        SignUpPanel.add(txtInputUsername, gridBagConstraints);
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPassword.setText("PASSWORD");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        SignUpPanel.add(lblPassword, gridBagConstraints);
+
+        lblBirthday.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBirthday.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblBirthday.setText("BIRTHDAY");
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsername.setText("USERNAME");
 
         txtInputPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 0, 5);
-        SignUpPanel.add(txtInputPassword, gridBagConstraints);
 
         chckbtnShowPassword.setText("Show password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
-        SignUpPanel.add(chckbtnShowPassword, gridBagConstraints);
+
+        lblGender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblGender.setText("GENDER");
+
+        btngGender.add(rbtnFemale);
+        rbtnFemale.setText("Female");
+
+        btngGender.add(rbtnMale);
+        rbtnMale.setText("Male");
+
+        spnSelectBirthday.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(788926260000L), null, java.util.Calendar.MONTH));
 
         btnCreateAccount.setText("Create Account");
         btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -160,13 +121,64 @@ public class SignUp_Surface extends javax.swing.JFrame {
                 btnCreateAccountActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 45;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        SignUpPanel.add(btnCreateAccount, gridBagConstraints);
+
+        javax.swing.GroupLayout pnlSignUpLayout = new javax.swing.GroupLayout(pnlSignUp);
+        pnlSignUp.setLayout(pnlSignUpLayout);
+        pnlSignUpLayout.setHorizontalGroup(
+            pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSignUpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtInputUsername)
+                    .addComponent(txtInputPassword)
+                    .addGroup(pnlSignUpLayout.createSequentialGroup()
+                        .addComponent(chckbtnShowPassword)
+                        .addGap(37, 37, 37)
+                        .addComponent(lblBirthday)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spnSelectBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 144, Short.MAX_VALUE))
+                    .addGroup(pnlSignUpLayout.createSequentialGroup()
+                        .addGroup(pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUsername)
+                            .addComponent(lblPassword)
+                            .addGroup(pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(rbtnMale, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rbtnFemale))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        pnlSignUpLayout.setVerticalGroup(
+            pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSignUpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtInputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtInputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chckbtnShowPassword)
+                    .addComponent(lblBirthday)
+                    .addComponent(spnSelectBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSignUpLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(rbtnFemale)
+                        .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSignUpLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblGender)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbtnMale)
+                        .addGap(16, 16, 16)
+                        .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
 
         btnGoToLogIn.setText("Go to Log In");
         btnGoToLogIn.addActionListener(new java.awt.event.ActionListener() {
@@ -174,82 +186,59 @@ public class SignUp_Surface extends javax.swing.JFrame {
                 btnGoToLogInActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 60;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 10, 0);
-        SignUpPanel.add(btnGoToLogIn, gridBagConstraints);
-
-        spnSelectBirthday.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(788926260000L), null, java.util.Calendar.MONTH));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 15, 0, 0);
-        SignUpPanel.add(spnSelectBirthday, gridBagConstraints);
-
-        btngGender.add(rbtnMale);
-        rbtnMale.setText("Male");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 10);
-        SignUpPanel.add(rbtnMale, gridBagConstraints);
-
-        btngGender.add(rbtnFemale);
-        rbtnFemale.setText("Female");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 15, 10);
-        SignUpPanel.add(rbtnFemale, gridBagConstraints);
-
-        lblBirthday.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblBirthday.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblBirthday.setText("BIRTHDAY");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 5);
-        SignUpPanel.add(lblBirthday, gridBagConstraints);
-
-        lblGender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblGender.setText("GENDER");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 5);
-        SignUpPanel.add(lblGender, gridBagConstraints);
 
         lblAlreadyHaveAnAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlreadyHaveAnAccount.setText("Already have an account?");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 19);
-        SignUpPanel.add(lblAlreadyHaveAnAccount, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 15;
-        SignUpPanel.add(jSeparator1, gridBagConstraints);
+
+        javax.swing.GroupLayout SignUpPanelLayout = new javax.swing.GroupLayout(SignUpPanel);
+        SignUpPanel.setLayout(SignUpPanelLayout);
+        SignUpPanelLayout.setHorizontalGroup(
+            SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SignUpPanelLayout.createSequentialGroup()
+                .addGroup(SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SignUpPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(SignUpPanelLayout.createSequentialGroup()
+                                .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblCreateMSG, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                                    .addComponent(lblRegisterMSG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(SignUpPanelLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblAlreadyHaveAnAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(SignUpPanelLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(btnGoToLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        SignUpPanelLayout.setVerticalGroup(
+            SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SignUpPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SignUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SignUpPanelLayout.createSequentialGroup()
+                        .addComponent(lblCreateMSG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRegisterMSG, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAlreadyHaveAnAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGoToLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         getContentPane().add(SignUpPanel, java.awt.BorderLayout.CENTER);
 
@@ -416,6 +405,7 @@ public class SignUp_Surface extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegisterMSG;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JPanel pnlSignUp;
     private javax.swing.JRadioButton rbtnFemale;
     private javax.swing.JRadioButton rbtnMale;
     private javax.swing.JSpinner spnSelectBirthday;

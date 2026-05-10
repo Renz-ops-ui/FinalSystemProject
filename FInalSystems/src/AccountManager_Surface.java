@@ -1,3 +1,4 @@
+package mysystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,9 +24,9 @@ public class AccountManager_Surface extends javax.swing.JFrame {
         
         //Sets the size to be untangleable and in fixed size
         this.setResizable(false);
-        this.setMinimumSize(new java.awt.Dimension(440, 520));
-        this.setMaximumSize(new java.awt.Dimension(440, 520));
-        this.setPreferredSize(new java.awt.Dimension(440, 520));
+        this.setMinimumSize(new java.awt.Dimension(500, 450));
+        this.setMaximumSize(new java.awt.Dimension(500, 450));
+        this.setPreferredSize(new java.awt.Dimension(500, 450));
 
         this.setTitle("Account Manager");
 
@@ -46,38 +47,40 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        pnlHeads = new javax.swing.JPanel();
-        lblHello_Acc = new javax.swing.JLabel();
+        pnlTop = new javax.swing.JPanel();
         lblAccountManager = new javax.swing.JLabel();
         LOGO = new javax.swing.JLabel();
-        pnlMainArea = new javax.swing.JPanel();
+        lblHello_Acc = new javax.swing.JLabel();
+        pnlSide = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        lblRole = new javax.swing.JLabel();
         lblWhatRole = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblWhatGender = new javax.swing.JLabel();
+        lblBirthdate = new javax.swing.JLabel();
+        lnlWhatBirthdate = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        pnlMain = new javax.swing.JPanel();
+        pnlAccountInfo = new javax.swing.JPanel();
         lblUsername = new javax.swing.JLabel();
+        lblAccountInfo = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
+        pnlPasswordInfo = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         chckbtnShowPassword = new javax.swing.JCheckBox();
         btnChangePassword = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
-        lblBirthday = new javax.swing.JLabel();
-        txtBirthday = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        lblGender = new javax.swing.JLabel();
-        lblWhatGender = new javax.swing.JLabel();
-        jSeparator6 = new javax.swing.JSeparator();
         btnSaveChanges = new javax.swing.JButton();
         btnReturnToDashboard = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblHello_Acc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblHello_Acc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblHello_Acc.setText("Hello - ");
+        setMaximumSize(new java.awt.Dimension(500, 450));
+        setMinimumSize(new java.awt.Dimension(500, 450));
+        setPreferredSize(new java.awt.Dimension(500, 450));
+        setSize(new java.awt.Dimension(500, 450));
 
         lblAccountManager.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblAccountManager.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -86,222 +89,42 @@ public class AccountManager_Surface extends javax.swing.JFrame {
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LOGO.setText("LOGO");
 
-        javax.swing.GroupLayout pnlHeadsLayout = new javax.swing.GroupLayout(pnlHeads);
-        pnlHeads.setLayout(pnlHeadsLayout);
-        pnlHeadsLayout.setHorizontalGroup(
-            pnlHeadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeadsLayout.createSequentialGroup()
+        lblHello_Acc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblHello_Acc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblHello_Acc.setText("Hello - [user]");
+        lblHello_Acc.setToolTipText("");
+
+        javax.swing.GroupLayout pnlTopLayout = new javax.swing.GroupLayout(pnlTop);
+        pnlTop.setLayout(pnlTopLayout);
+        pnlTopLayout.setHorizontalGroup(
+            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LOGO, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(LOGO, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlHeadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblAccountManager, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(lblHello_Acc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHello_Acc, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAccountManager, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
-        pnlHeadsLayout.setVerticalGroup(
-            pnlHeadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeadsLayout.createSequentialGroup()
+        pnlTopLayout.setVerticalGroup(
+            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlHeadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LOGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlHeadsLayout.createSequentialGroup()
-                        .addComponent(lblAccountManager, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblHello_Acc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(pnlTopLayout.createSequentialGroup()
+                        .addComponent(lblAccountManager)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(lblHello_Acc)))
                 .addContainerGap())
         );
 
-        getContentPane().add(pnlHeads, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(pnlTop, java.awt.BorderLayout.PAGE_START);
 
-        pnlMainArea.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator1, gridBagConstraints);
-
-        lblRole.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblRole.setText("Role:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        pnlMainArea.add(lblRole, gridBagConstraints);
-
-        lblWhatRole.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblWhatRole.setText("Admin/User");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 70;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 0);
-        pnlMainArea.add(lblWhatRole, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator2, gridBagConstraints);
-
-        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUsername.setText("Username:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        pnlMainArea.add(lblUsername, gridBagConstraints);
-
-        txtUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtUsername.setText("username");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 70;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        pnlMainArea.add(txtUsername, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator3, gridBagConstraints);
-
-        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblPassword.setText("Password:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 10);
-        pnlMainArea.add(lblPassword, gridBagConstraints);
-
-        txtPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtPassword.setText("password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 70;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
-        pnlMainArea.add(txtPassword, gridBagConstraints);
-
-        chckbtnShowPassword.setText("Show Password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        pnlMainArea.add(chckbtnShowPassword, gridBagConstraints);
-
-        btnChangePassword.setText("Change Password");
-        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangePasswordActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 10, 0);
-        pnlMainArea.add(btnChangePassword, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator4, gridBagConstraints);
-
-        lblBirthday.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblBirthday.setText("Birthday");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        pnlMainArea.add(lblBirthday, gridBagConstraints);
-
-        txtBirthday.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtBirthday.setText("MM-DD-YYYY");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
-        pnlMainArea.add(txtBirthday, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator5, gridBagConstraints);
-
-        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblGender.setText("Gender:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
-        pnlMainArea.add(lblGender, gridBagConstraints);
-
-        lblWhatGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblWhatGender.setText("MALE/FEMALE");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 13, 10, 0);
-        pnlMainArea.add(lblWhatGender, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        pnlMainArea.add(jSeparator6, gridBagConstraints);
-
-        btnSaveChanges.setText("Save Changes");
-        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveChangesActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        pnlMainArea.add(btnSaveChanges, gridBagConstraints);
-
-        btnReturnToDashboard.setText("Return to Dashboard");
-        btnReturnToDashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnToDashboardActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        pnlMainArea.add(btnReturnToDashboard, gridBagConstraints);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("[user]");
 
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -309,23 +132,225 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                 btnLogOutActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        pnlMainArea.add(btnLogOut, gridBagConstraints);
 
-        getContentPane().add(pnlMainArea, java.awt.BorderLayout.CENTER);
+        lblWhatRole.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblWhatRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWhatRole.setText("Admin/User");
+
+        lblGender.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblGender.setText("Gender");
+
+        lblWhatGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblWhatGender.setText("MALE/FEMALE");
+
+        lblBirthdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblBirthdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblBirthdate.setText("Birthdate");
+
+        lnlWhatBirthdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lnlWhatBirthdate.setText("MM-DD-YYYY");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("PERSONAL INFO");
+
+        javax.swing.GroupLayout pnlSideLayout = new javax.swing.GroupLayout(pnlSide);
+        pnlSide.setLayout(pnlSideLayout);
+        pnlSideLayout.setHorizontalGroup(
+            pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSideLayout.createSequentialGroup()
+                .addGroup(pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblWhatRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlSideLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
+                            .addComponent(lblGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblWhatGender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblBirthdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lnlWhatBirthdate, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jSeparator2))))
+                .addContainerGap())
+            .addGroup(pnlSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlSideLayout.setVerticalGroup(
+            pnlSideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSideLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblWhatRole, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblWhatGender, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lnlWhatBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(pnlSide, java.awt.BorderLayout.LINE_START);
+
+        pnlMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        pnlAccountInfo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsername.setText("Username");
+
+        lblAccountInfo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAccountInfo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAccountInfo.setText("ACCOUNT INFO");
+
+        txtUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtUsername.setText("username");
+
+        javax.swing.GroupLayout pnlAccountInfoLayout = new javax.swing.GroupLayout(pnlAccountInfo);
+        pnlAccountInfo.setLayout(pnlAccountInfoLayout);
+        pnlAccountInfoLayout.setHorizontalGroup(
+            pnlAccountInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAccountInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAccountInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAccountInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUsername)
+                    .addGroup(pnlAccountInfoLayout.createSequentialGroup()
+                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlAccountInfoLayout.setVerticalGroup(
+            pnlAccountInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAccountInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlPasswordInfo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("PASSWORD INFO");
+
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPassword.setText("Current password");
+
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPassword.setText("password");
+
+        chckbtnShowPassword.setText("Show Password");
+
+        btnChangePassword.setText("Change Password");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlPasswordInfoLayout = new javax.swing.GroupLayout(pnlPasswordInfo);
+        pnlPasswordInfo.setLayout(pnlPasswordInfoLayout);
+        pnlPasswordInfoLayout.setHorizontalGroup(
+            pnlPasswordInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPasswordInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPasswordInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassword)
+                    .addGroup(pnlPasswordInfoLayout.createSequentialGroup()
+                        .addComponent(lblPassword)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlPasswordInfoLayout.createSequentialGroup()
+                        .addComponent(chckbtnShowPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addComponent(btnChangePassword)))
+                .addContainerGap())
+        );
+        pnlPasswordInfoLayout.setVerticalGroup(
+            pnlPasswordInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPasswordInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlPasswordInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chckbtnShowPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(btnChangePassword))
+                .addContainerGap())
+        );
+
+        btnSaveChanges.setText("Save Changes");
+        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveChangesActionPerformed(evt);
+            }
+        });
+
+        btnReturnToDashboard.setText("Return to Dashboard");
+        btnReturnToDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnToDashboardActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        pnlMain.setLayout(pnlMainLayout);
+        pnlMainLayout.setHorizontalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlPasswordInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlAccountInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addComponent(btnReturnToDashboard)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSaveChanges)))
+                .addContainerGap())
+        );
+        pnlMainLayout.setVerticalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlPasswordInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 32, Short.MAX_VALUE)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(btnReturnToDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(pnlMain, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnReturnToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToDashboardActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new HomeworkTrackerSystem(userID, username, role).setVisible(true);
-    }//GEN-LAST:event_btnReturnToDashboardActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
@@ -343,48 +368,48 @@ public class AccountManager_Surface extends javax.swing.JFrame {
 
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
         // TODO add your handling code here:
-        String birthday = txtBirthday.getText().trim();
-
-        if (!birthday.matches("\\d{2}-\\d{2}-\\d{4}") && !birthday.equals("MM-DD-YYYY")) {
-            JOptionPane.showMessageDialog(this,
-                    "Birthday must be MM-DD-YYYY format. \nExample",
-                    "Invalid Format",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        String sql = "UPDATE users SET birthday = ? WHERE id = ?";
-        Connection connect = DatabaseConnection.getConnection();
-
-        if (connect == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Cannot connect to database.",
-                    "Database Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try (PreparedStatement statement = connect.prepareStatement(sql)) {
-            statement.setString(1, birthday.equals("MM-DD-YYYY") ? null : birthday);
-            statement.setInt(2, userID);
-            statement.executeUpdate();
-
-            JOptionPane.showMessageDialog(this,
-                    "Changes saved successfully!",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-            loadUserData();
-
-        } catch (SQLException e) {
-            logger.severe("Save changes error: " + e.getMessage());
-
-            JOptionPane.showMessageDialog(this,
-                    "Error saving changes: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-
-        }
+//        String birthday = txtBirthday.getText().trim();
+//
+//        if (!birthday.matches("\\d{2}-\\d{2}-\\d{4}") && !birthday.equals("MM-DD-YYYY")) {
+//            JOptionPane.showMessageDialog(this,
+//                    "Birthday must be MM-DD-YYYY format. \nExample",
+//                    "Invalid Format",
+//                    JOptionPane.WARNING_MESSAGE);
+//            return;
+//        }
+//
+//        String sql = "UPDATE users SET birthday = ? WHERE id = ?";
+//        Connection connect = DatabaseConnection.getConnection();
+//
+//        if (connect == null) {
+//            JOptionPane.showMessageDialog(this,
+//                    "Cannot connect to database.",
+//                    "Database Error",
+//                    JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        try (PreparedStatement statement = connect.prepareStatement(sql)) {
+//            statement.setString(1, birthday.equals("MM-DD-YYYY") ? null : birthday);
+//            statement.setInt(2, userID);
+//            statement.executeUpdate();
+//
+//            JOptionPane.showMessageDialog(this,
+//                    "Changes saved successfully!",
+//                    "Success",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//
+//            loadUserData();
+//
+//        } catch (SQLException e) {
+//            logger.severe("Save changes error: " + e.getMessage());
+//
+//            JOptionPane.showMessageDialog(this,
+//                    "Error saving changes: " + e.getMessage(),
+//                    "Error",
+//                    JOptionPane.ERROR_MESSAGE);
+//
+//        }
 
     }//GEN-LAST:event_btnSaveChangesActionPerformed
 
@@ -469,6 +494,12 @@ public class AccountManager_Surface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
+    private void btnReturnToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToDashboardActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new HomeworkTrackerSystem(userID, username, role).setVisible(true);
+    }//GEN-LAST:event_btnReturnToDashboardActionPerformed
+
     private void loadUserData() {
         String sql = "SELECT username, role, gender, birthday FROM users WHERE id = ?";
         Connection connect = DatabaseConnection.getConnection();
@@ -498,7 +529,6 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                 String birthday = setResult.getString("birthday");
 
                 lblWhatGender.setText(gender != null ? gender : "Not set");
-                txtBirthday.setText(birthday != null ? birthday : "MM-DD-YYYY");
 
                 txtPassword.setText("********");
             }
@@ -541,24 +571,26 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     private javax.swing.JButton btnReturnToDashboard;
     private javax.swing.JButton btnSaveChanges;
     private javax.swing.JCheckBox chckbtnShowPassword;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel lblAccountInfo;
     private javax.swing.JLabel lblAccountManager;
-    private javax.swing.JLabel lblBirthday;
+    private javax.swing.JLabel lblBirthdate;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblHello_Acc;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWhatGender;
     private javax.swing.JLabel lblWhatRole;
-    private javax.swing.JPanel pnlHeads;
-    private javax.swing.JPanel pnlMainArea;
-    private javax.swing.JTextField txtBirthday;
+    private javax.swing.JLabel lnlWhatBirthdate;
+    private javax.swing.JPanel pnlAccountInfo;
+    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlPasswordInfo;
+    private javax.swing.JPanel pnlSide;
+    private javax.swing.JPanel pnlTop;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
