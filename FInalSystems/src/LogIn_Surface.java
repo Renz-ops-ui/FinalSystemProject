@@ -1,6 +1,7 @@
 package mysystem;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +20,13 @@ public class LogIn_Surface extends javax.swing.JFrame {
         role: admin
     
      */
-    
     private CardLayout layout;
-    
+
     private int loggedInUserID = -1;
     private String loggedInUsername = "";
+
+    private static final String placeholderUsername = "Enter username";
+    private static final String placeholderPassword = "Enter password";
 
     public LogIn_Surface() {
         initComponents();
@@ -40,13 +43,19 @@ public class LogIn_Surface extends javax.swing.JFrame {
         //Sets the title to LogIn
         this.setTitle("Log In");
 
-        //Shows or Hide the password when check
-        chckbtnShowPassword.addActionListener(e
-                -> txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '\u2022'));
-        
         layout = (CardLayout) pnlMain.getLayout();
-        
+
+        //Makes the about info uneditable
         txtaAbout.setEditable(false);
+
+        //Sets placeholder text for both username and password
+        txtInputUsername.setText(placeholderUsername);
+        txtInputUsername.setForeground(Color.GRAY);
+
+        txtInputPassword.setText(placeholderPassword);
+        txtInputPassword.setEchoChar((char) 0);
+        txtInputPassword.setForeground(Color.GRAY);
+
     }
 
     /**
@@ -89,7 +98,6 @@ public class LogIn_Surface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 450));
         setMinimumSize(new java.awt.Dimension(500, 450));
-        setPreferredSize(new java.awt.Dimension(500, 450));
         setSize(new java.awt.Dimension(500, 450));
 
         pnlSide.setMaximumSize(new java.awt.Dimension(160, 450));
@@ -202,10 +210,12 @@ public class LogIn_Surface extends javax.swing.JFrame {
         pnlLogIn.add(lblUsername, gridBagConstraints);
 
         txtInputUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtInputUsername.setText("Enter username");
-        txtInputUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInputUsernameActionPerformed(evt);
+        txtInputUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtInputUsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInputUsernameFocusLost(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -231,7 +241,14 @@ public class LogIn_Surface extends javax.swing.JFrame {
         pnlLogIn.add(lblPassword, gridBagConstraints);
 
         txtInputPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtInputPassword.setText("Enter password");
+        txtInputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtInputPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInputPasswordFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -242,6 +259,11 @@ public class LogIn_Surface extends javax.swing.JFrame {
         pnlLogIn.add(txtInputPassword, gridBagConstraints);
 
         chckbtnShowPassword.setText("Show password");
+        chckbtnShowPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chckbtnShowPasswordActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -353,6 +375,14 @@ public class LogIn_Surface extends javax.swing.JFrame {
         String username = txtInputUsername.getText().trim();
         String password = new String(txtInputPassword.getPassword()).trim();
 
+        if (username.equals(placeholderUsername)) {
+            username = "";
+        }
+        
+        if (password.equals(placeholderPassword)) {
+            password = "";
+        }
+        
         //Checks if username and password input is empty
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -372,11 +402,11 @@ public class LogIn_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             dispose();
-//            if ("admin".equalsIgnoreCase(role)) {
-//
-//            } else {
+            if ("admin".equalsIgnoreCase(role)) {
+                new AdminDashboard_Surface(loggedInUserID, loggedInUsername, role).setVisible(true);
+            } else {
                 new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
-//            }
+            }
 
         }
 
@@ -392,7 +422,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         // TODO add your handling code here:
         layout.show(pnlMain, "pnlAbout");
-        
+
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -400,9 +430,47 @@ public class LogIn_Surface extends javax.swing.JFrame {
         layout.show(pnlMain, "pnlLogIn");
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void txtInputUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInputUsernameActionPerformed
+    private void chckbtnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckbtnShowPasswordActionPerformed
+        //Shows or Hide the password when check
+        txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '\u2022');
+    }//GEN-LAST:event_chckbtnShowPasswordActionPerformed
+
+    private void txtInputUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusGained
+        //Makes the input username text be empty when gained focus
+        if (txtInputUsername.getText().equals(placeholderUsername)) {
+            txtInputUsername.setText("");
+            txtInputUsername.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtInputUsernameFocusGained
+
+    private void txtInputUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusLost
+        //Makes the input username text contain the "Enter username" message when lost focus
+
+        if (txtInputUsername.getText().trim().isEmpty()) {
+            txtInputUsername.setText(placeholderUsername);
+            txtInputUsername.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtInputUsernameFocusLost
+
+    private void txtInputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusGained
+        //Makes the input password text be empty when gained focus
+        if (new String(txtInputPassword.getPassword()).equals(placeholderPassword)) {
+            txtInputPassword.setText("");
+            txtInputPassword.setEchoChar('\u2022');
+            txtInputPassword.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtInputPasswordFocusGained
+
+    private void txtInputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusLost
+        //Makes the input username text contain the "Enter username" message when lost focus
+        if (new String(txtInputPassword.getPassword()).trim().isEmpty()) {
+            txtInputPassword.setText(placeholderPassword);
+            txtInputPassword.setEchoChar((char) 0);
+            txtInputPassword.setForeground(Color.GRAY);
+
+            chckbtnShowPassword.setSelected(false);
+        }
+    }//GEN-LAST:event_txtInputPasswordFocusLost
 
     private String checkCredentials(String username, String password) {
         //Checks if the user input is within the system or not
