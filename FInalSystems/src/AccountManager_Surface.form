@@ -260,10 +260,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnlPasswordInfo" max="32767" attributes="0"/>
                       <Component id="pnlAccountInfo" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btnReturnToDashboard" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnSaveChanges" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -277,11 +276,8 @@
                   <Component id="pnlAccountInfo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="pnlPasswordInfo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" pref="32" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnSaveChanges" pref="25" max="32767" attributes="0"/>
-                      <Component id="btnReturnToDashboard" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="btnReturnToDashboard" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -378,7 +374,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="chckbtnShowPassword" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="90" max="32767" attributes="0"/>
+                              <EmptySpace pref="84" max="32767" attributes="0"/>
                               <Component id="btnChangePassword" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -397,7 +393,7 @@
                       <Component id="txtPassword" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="chckbtnShowPassword" alignment="3" pref="27" max="32767" attributes="0"/>
+                          <Component id="chckbtnShowPassword" alignment="3" max="32767" attributes="0"/>
                           <Component id="btnChangePassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -448,14 +444,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnSaveChanges">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Save Changes"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveChangesActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnReturnToDashboard">
           <Properties>
             <Property name="text" type="java.lang.String" value="Return to Dashboard"/>

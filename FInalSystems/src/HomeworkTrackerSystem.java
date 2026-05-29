@@ -1,4 +1,3 @@
-package mysystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -469,7 +468,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         String searchBy = txtInputTitle_Subject.getText().trim();
-
+ 
         if (searchBy.isEmpty() || searchBy.equals("Search by Title or Subject")) {
             loadTasks(null, null);
         } else {
@@ -489,7 +488,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         int confirm = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to delete this task?",
                 "Confirm Delete",
@@ -497,10 +496,10 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
-
+ 
         String sql = "DELETE FROM tasks WHERE id = ? AND user_id = ?";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -508,20 +507,20 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setInt(1, selectedTaskID);
             statement.setInt(2, userID);
             statement.executeUpdate();
-
+ 
             JOptionPane.showMessageDialog(this,
                     "Task deleted.",
                     "Deleted",
                     JOptionPane.INFORMATION_MESSAGE);
-
+ 
             clearForm();
             loadTasks(null, null);
-
+ 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
                     "Error deleting task: " + e.getMessage(),
@@ -538,10 +537,10 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         String title = txtInputTaskName.getText().trim();
         String deadline = txtInputDeadlineDate.getText().trim();
-
+ 
         if (title.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Task Title cannot be empty.",
@@ -549,7 +548,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         if (!deadline.matches("\\d{4}-\\d{2}-\\d{2}")) {
             JOptionPane.showMessageDialog(this,
                     "Deadline must be YYYY-MM-DD format. \nExample: 2026-05-01",
@@ -557,10 +556,10 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         String sql = "UPDATE tasks SET subject = ?, title = ?, deadline = ?, status = ? WHERE id = ? AND user_id = ?";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -568,7 +567,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setString(1, jcbSubjectSelection.getSelectedItem().toString());
             statement.setString(2, title);
@@ -577,15 +576,15 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
             statement.setInt(5, selectedTaskID);
             statement.setInt(6, userID);
             statement.executeUpdate();
-
+ 
             JOptionPane.showMessageDialog(this,
                     "Task updated successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-
+ 
             clearForm();
             loadTasks(null, null);
-
+ 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
                     "Error updating task: " + e.getMessage(),
@@ -599,7 +598,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
         String title = txtInputTaskName.getText().trim();
         String deadline = txtInputDeadlineDate.getText().trim();
         String status = jcbStatusSelection.getSelectedItem().toString();
-
+ 
         //Checks title if empty
         if (title.isEmpty() || title.equals("Task Title")) {
             JOptionPane.showMessageDialog(this,
@@ -608,7 +607,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         //Checks deadlines format, example 2026-05-01
         if (!deadline.matches("\\d{4}-\\d{2}-\\d{2}")) {
             JOptionPane.showMessageDialog(this,
@@ -618,9 +617,19 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
             return;
         }
 
+        if (userID <= 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Session error: user is not logged in properly. Please log in again.",
+                    "Session Error",
+                    JOptionPane.ERROR_MESSAGE);
+            dispose();
+            new LogIn_Surface().setVisible(true);
+            return;
+        }
+
         String sql = "INSERT INTO tasks (user_id, subject, title, deadline, status) VALUES (?, ?, ?, ?, ?)";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -628,7 +637,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setInt(1, userID);
             statement.setString(2, subject);
@@ -636,15 +645,15 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
             statement.setString(4, deadline);
             statement.setString(5, status);
             statement.executeUpdate();
-
+ 
             JOptionPane.showMessageDialog(this,
                     "Task added successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-
+ 
             clearForm();
             loadTasks(null, null);
-
+ 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
                     "Error adding task: " + e.getMessage(),
@@ -666,7 +675,6 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComNetworkinngActionPerformed
 
     private void btnOPSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOPSystemActionPerformed
-        // TODO add your handling code here:
         loadBySubject("Operating System");
     }//GEN-LAST:event_btnOPSystemActionPerformed
 
@@ -695,12 +703,11 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                 "Are you sure you want to log out?",
                 "Confirm Log-Out",
                 JOptionPane.YES_NO_OPTION);
-
+ 
         if (confirm == JOptionPane.YES_OPTION) {
             dispose();
             new LogIn_Surface().setVisible(true);
         }
-
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnAccountManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagerActionPerformed
@@ -726,9 +733,9 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) jTable1.getModel();
         table.setRowCount(0);
         selectedTaskID = -1;
-
+ 
         StringBuilder sql = new StringBuilder("SELECT id, subject, title, deadline, status FROM tasks WHERE user_id = ?");
-
+ 
         if (statusFilter != null) {
             sql.append(" AND status = ?");
         }
@@ -736,9 +743,9 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
             sql.append(" AND subject = ?");
         }
         sql.append(" ORDER BY deadline ASC");
-
+ 
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -746,68 +753,68 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql.toString())) {
             int i = 1;
             statement.setInt(i++, userID);
-
+ 
             if (statusFilter != null) {
                 statement.setString(i++, statusFilter);
             }
             if (subjectFilter != null) {
                 statement.setString(i++, subjectFilter);
             }
-
+ 
             ResultSet setResult = statement.executeQuery();
             int rowNum = 1;
-
+ 
             while (setResult.next()) {
                 int id = setResult.getInt("id");
                 String subject = setResult.getString("subject");
                 String title = setResult.getString("title");
                 String deadline = setResult.getString("deadline");
                 String status = setResult.getString("status");
-
+ 
                 long daysLeft = calculateDaysLeft(deadline);
-
+ 
                 if (daysLeft < 0 && !status.equals("Done/Checked") && !status.equals("Submitted")) {
                     autoUpdateStatus(id, "Overdue");
                     status = "Overdue";
                 }
-
+ 
                 table.addRow(new Object[]{rowNum, subject, title, deadline, status, daysLeft});
                 jTable1.putClientProperty("taskId_" + (rowNum - 1), id);
                 rowNum++;
-
+ 
             }
-
+ 
             updateProgressBar(table);
-
+ 
             jTable1.getSelectionModel().addListSelectionListener(e -> {
                 if (!e.getValueIsAdjusting()) {
                     fillSelectedRow();
                 }
             });
-
+ 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
                     "Error loading task: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
+ 
     }
 
     private void searchTasks(String input) {
         DefaultTableModel table = (DefaultTableModel) jTable1.getModel();
         table.setRowCount(0);
         selectedTaskID = -1;
-
+ 
         String sql = "SELECT id, subject, title, deadline, status FROM tasks "
                 + "WHERE user_id = ? AND (title LIKE ? OR subject LIKE ?) ORDER BY deadline ASC";
-
+ 
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -815,76 +822,76 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             String inpt = "%" + input + "%";
             statement.setInt(1, userID);
             statement.setString(2, inpt);
             statement.setString(3, inpt);
-
+ 
             ResultSet setResult = statement.executeQuery();
             int rowNum = 1;
-
+ 
             while (setResult.next()) {
                 int id = setResult.getInt("id");
                 long daysLeft = calculateDaysLeft(setResult.getString("deadline"));
-
+ 
                 table.addRow(new Object[]{rowNum, setResult.getString("subject"),
                     setResult.getString("title"), setResult.getString("deadline"),
                     setResult.getString("status"), daysLeft});
-
+ 
                 jTable1.putClientProperty("taskId_" + (rowNum - 1), id);
                 rowNum++;
-
+ 
             }
-
+ 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,
                     "Error loading task: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
+ 
     }
 
     private void fillSelectedRow() {
         int row = jTable1.getSelectedRow();
-
+ 
         if (row < 0) {
             return;
         }
-
+ 
         Object idProp = jTable1.getClientProperty("taskId_" + row);
-
+ 
         if (idProp == null) {
             return;
         }
-
+ 
         selectedTaskID = (int) idProp;
-
+ 
         jcbSubjectSelection.setSelectedItem(jTable1.getValueAt(row, 1));
         txtInputTaskName.setText((String) jTable1.getValueAt(row, 2));
         txtInputDeadlineDate.setText((String) jTable1.getValueAt(row, 3));
         jcbStatusSelection.setSelectedItem(jTable1.getValueAt(row, 4));
-
+ 
     }
 
     private void updateProgressBar(DefaultTableModel table) {
         int total = table.getRowCount();
         int done_finish = 0;
-
+ 
         for (int i = 0; i < total; i++) {
             if ("Done/Checked".equals(table.getValueAt(i, 4))) {
                 done_finish++;
             }
         }
-
+ 
         int progressTotal = total == 0 ? 0 : (done_finish * 100 / total);
-
+ 
         jProgressBar1.setValue(progressTotal);
         jProgressBar1.setStringPainted(true);
         jProgressBar1.setString(done_finish + "/" + total + " tasks done (" + progressTotal + "%)");
-
+ 
     }
 
     private long calculateDaysLeft(String deadlineToStr) {
@@ -898,19 +905,19 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     private void autoUpdateStatus(int taskID, String newStatus) {
         String sql = "UPDATE tasks SET status = ? WHERE id = ?";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             return;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setString(1, newStatus);
             statement.setInt(2, taskID);
             statement.executeUpdate();
-
+ 
         } catch (SQLException ignored) {
         }
-
+ 
     }
 
     /**

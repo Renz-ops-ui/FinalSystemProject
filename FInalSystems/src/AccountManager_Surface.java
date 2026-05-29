@@ -1,4 +1,3 @@
-package mysystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     private String username;
     private String role;
 
-    public AccountManager_Surface(int UserID, String username, String role) {
+    public AccountManager_Surface(int userID, String username, String role) {
         this.userID = userID;
         this.username = username;
         this.role = role;
@@ -68,7 +67,6 @@ public class AccountManager_Surface extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         chckbtnShowPassword = new javax.swing.JCheckBox();
         btnChangePassword = new javax.swing.JButton();
-        btnSaveChanges = new javax.swing.JButton();
         btnReturnToDashboard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -284,7 +282,7 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlPasswordInfoLayout.createSequentialGroup()
                         .addComponent(chckbtnShowPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(btnChangePassword)))
                 .addContainerGap())
         );
@@ -299,17 +297,10 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPasswordInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chckbtnShowPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(chckbtnShowPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnChangePassword))
                 .addContainerGap())
         );
-
-        btnSaveChanges.setText("Save Changes");
-        btnSaveChanges.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveChangesActionPerformed(evt);
-            }
-        });
 
         btnReturnToDashboard.setText("Return to Dashboard");
         btnReturnToDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -327,10 +318,9 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlPasswordInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlAccountInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(btnReturnToDashboard)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSaveChanges)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnReturnToDashboard)))
                 .addContainerGap())
         );
         pnlMainLayout.setVerticalGroup(
@@ -340,10 +330,8 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                 .addComponent(pnlAccountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlPasswordInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 32, Short.MAX_VALUE)
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(btnReturnToDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnReturnToDashboard)
                 .addContainerGap())
         );
 
@@ -353,88 +341,38 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to log out?",
                 "Confirm Log-Out",
                 JOptionPane.YES_NO_OPTION);
-
+ 
         if (confirm == JOptionPane.YES_OPTION) {
             dispose();
             new LogIn_Surface().setVisible(true);
         }
-
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
-        // TODO add your handling code here:
-//        String birthday = txtBirthday.getText().trim();
-//
-//        if (!birthday.matches("\\d{2}-\\d{2}-\\d{4}") && !birthday.equals("MM-DD-YYYY")) {
-//            JOptionPane.showMessageDialog(this,
-//                    "Birthday must be MM-DD-YYYY format. \nExample",
-//                    "Invalid Format",
-//                    JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        String sql = "UPDATE users SET birthday = ? WHERE id = ?";
-//        Connection connect = DatabaseConnection.getConnection();
-//
-//        if (connect == null) {
-//            JOptionPane.showMessageDialog(this,
-//                    "Cannot connect to database.",
-//                    "Database Error",
-//                    JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        try (PreparedStatement statement = connect.prepareStatement(sql)) {
-//            statement.setString(1, birthday.equals("MM-DD-YYYY") ? null : birthday);
-//            statement.setInt(2, userID);
-//            statement.executeUpdate();
-//
-//            JOptionPane.showMessageDialog(this,
-//                    "Changes saved successfully!",
-//                    "Success",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//
-//            loadUserData();
-//
-//        } catch (SQLException e) {
-//            logger.severe("Save changes error: " + e.getMessage());
-//
-//            JOptionPane.showMessageDialog(this,
-//                    "Error saving changes: " + e.getMessage(),
-//                    "Error",
-//                    JOptionPane.ERROR_MESSAGE);
-//
-//        }
-
-    }//GEN-LAST:event_btnSaveChangesActionPerformed
-
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
-        // TODO add your handling code here:
         javax.swing.JPasswordField newPasswordField = new javax.swing.JPasswordField();
         javax.swing.JPasswordField confirmPassword = new javax.swing.JPasswordField();
-
+ 
         Object[] message = {
             "New Password:", newPasswordField,
             "Confirm Password:", confirmPassword
         };
-
+ 
         int option = JOptionPane.showConfirmDialog(this,
                 message,
                 "Confirm Password",
                 JOptionPane.OK_CANCEL_OPTION);
-
+ 
         if (option != JOptionPane.OK_OPTION) {
             return;
         }
-
+ 
         String newPassword = new String(newPasswordField.getPassword()).trim();
         String confirmNewPassword = new String(confirmPassword.getPassword()).trim();
-
+ 
         if (newPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Password cannot be empty.",
@@ -442,7 +380,7 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         if (newPassword.length() < 6) {
             JOptionPane.showMessageDialog(this,
                     "Password must be at least 6 characters.",
@@ -450,7 +388,7 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+ 
         if (!newPassword.equals(confirmNewPassword)) {
             JOptionPane.showMessageDialog(this,
                     "Passwords do not match. Please try again.",
@@ -458,10 +396,10 @@ public class AccountManager_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ 
         String sql = "UPDATE users SET password = ? WHERE id = ?";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -475,27 +413,23 @@ public class AccountManager_Surface extends javax.swing.JFrame {
             statement.setInt(2, userID);
             statement.executeUpdate();
 
-            ResultSet setResult = statement.executeQuery();
-
             JOptionPane.showMessageDialog(this,
                     "Password changed successfully!",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE);
-
+ 
         } catch (SQLException e) {
             logger.severe("Change password error: " + e.getMessage());
-
+ 
             JOptionPane.showMessageDialog(this,
                     "Error changing password: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-
+ 
         }
-
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     private void btnReturnToDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToDashboardActionPerformed
-        // TODO add your handling code here:
         dispose();
         new HomeworkTrackerSystem(userID, username, role).setVisible(true);
     }//GEN-LAST:event_btnReturnToDashboardActionPerformed
@@ -505,43 +439,44 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     }//GEN-LAST:event_chckbtnShowPasswordActionPerformed
 
     private void loadUserData() {
-        String sql = "SELECT username, role, gender, birthday FROM users WHERE id = ?";
-        Connection connect = DatabaseConnection.getConnection();
+    String sql = "SELECT username, role, gender, birthday, password FROM users WHERE id = ?";
+    Connection connect = DatabaseConnection.getConnection();
 
-        if (connect == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Cannot connect to database.",
-                    "Database Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try (PreparedStatement statement = connect.prepareStatement(sql)) {
-            statement.setInt(1, userID);
-
-            ResultSet setResult = statement.executeQuery();
-
-            if (setResult.next()) {
-                lblHello_Acc.setText("Hello - " + setResult.getString("username"));
-
-                txtUsername.setText(setResult.getString("username"));
-                txtUsername.setEditable(false);
-
-                lblWhatRole.setText(setResult.getString("role"));
-
-                String gender = setResult.getString("gender");
-                String birthday = setResult.getString("birthday");
-
-                lblWhatGender.setText(gender != null ? gender : "Not set");
-
-                txtPassword.setText("********");
-            }
-
-        } catch (SQLException e) {
-            logger.severe("Load user data error: " + e.getMessage());
-        }
-
+    if (connect == null) {
+        JOptionPane.showMessageDialog(this,
+                "Cannot connect to database.",
+                "Database Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
     }
+
+    try (PreparedStatement statement = connect.prepareStatement(sql)) {
+        statement.setInt(1, userID);
+
+        ResultSet setResult = statement.executeQuery();
+
+        if (setResult.next()) {
+            lblHello_Acc.setText("Hello - " + setResult.getString("username"));
+            jLabel1.setText(setResult.getString("username"));
+
+            txtUsername.setText(setResult.getString("username"));
+            txtUsername.setEditable(false);
+
+            lblWhatRole.setText(setResult.getString("role"));
+
+            String gender = setResult.getString("gender");
+            String birthday = setResult.getString("birthday");
+
+            lblWhatGender.setText(gender != null ? gender : "Not set");
+            lnlWhatBirthdate.setText(birthday != null ? birthday : "Not set");
+
+            txtPassword.setText(setResult.getString("password"));
+        }
+
+    } catch (SQLException e) {
+        logger.severe("Load user data error: " + e.getMessage());
+    }
+}
 
     /**
      * @param args the command line arguments
@@ -573,7 +508,6 @@ public class AccountManager_Surface extends javax.swing.JFrame {
     private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnReturnToDashboard;
-    private javax.swing.JButton btnSaveChanges;
     private javax.swing.JCheckBox chckbtnShowPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

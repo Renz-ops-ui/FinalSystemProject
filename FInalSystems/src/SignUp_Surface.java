@@ -1,4 +1,3 @@
-package mysystem;
 
 import java.awt.Color;
 import java.sql.Connection;

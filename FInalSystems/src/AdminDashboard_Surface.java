@@ -1,4 +1,4 @@
-package mysystem;
+
 
 import java.awt.Color;
 import java.sql.Connection;
@@ -77,7 +77,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
         lblLoggedAs = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnLogOut = new javax.swing.JButton();
-        btnGoToAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(920, 650));
@@ -304,14 +303,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             }
         });
 
-        btnGoToAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGoToAccount.setText("Go to Account");
-        btnGoToAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoToAccountActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
         pnlTitle.setLayout(pnlTitleLayout);
         pnlTitleLayout.setHorizontalGroup(
@@ -323,8 +314,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                     .addGroup(pnlTitleLayout.createSequentialGroup()
                         .addComponent(lblLoggedAs, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGoToAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -339,8 +328,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                     .addComponent(lblLoggedAs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlTitleLayout.createSequentialGroup()
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnGoToAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
@@ -350,12 +338,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnGoToAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToAccountActionPerformed
-        //Goes to account settings
-        dispose();
-        new AccountManager_Surface(adminID, adminsUsername, adminRole).setVisible(true);
-    }//GEN-LAST:event_btnGoToAccountActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         //Logs Out, and shift into the Log In System
@@ -655,7 +637,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteUser;
-    private javax.swing.JButton btnGoToAccount;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearchUsername;

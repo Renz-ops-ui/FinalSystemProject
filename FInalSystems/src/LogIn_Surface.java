@@ -1,4 +1,3 @@
-package mysystem;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -7,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class LogIn_Surface extends javax.swing.JFrame {
 
@@ -16,15 +19,17 @@ public class LogIn_Surface extends javax.swing.JFrame {
     Installed Account in the System:
     
         Username: AdminAcc
-        Password: admin1234
+        Password: admin123
         role: admin
     
      */
     private CardLayout layout;
-
+    
+    private JTextPane about = new JTextPane();
+ 
     private int loggedInUserID = -1;
     private String loggedInUsername = "";
-
+ 
     private String holderName = "Enter username";
     private String holderPass = "Enter password";
 
@@ -44,8 +49,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
         this.setTitle("Log In");
 
         layout = (CardLayout) pnlMain.getLayout();
-
-        txtaAbout.setEditable(false);
+        
+        setAboutPane();
 
         txtInputUsername.setText(holderName);
         txtInputUsername.setForeground(Color.GRAY);
@@ -354,8 +359,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -373,7 +378,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         String password = new String(txtInputPassword.getPassword()).trim();
 
         //Checks if username and password input is empty
-        if (username.contains(holderName) || password.equals(holderPass)) {
+        if (username.equals(holderName) || username.isEmpty() || password.equals(holderPass) || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please enter both username and password.",
                     "Missing Fields",
@@ -383,7 +388,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         //Checks if role is user/admin
         String role = checkCredentials(username, password);
-
+ 
         if (role == null) {
             JOptionPane.showMessageDialog(this,
                     "Invalid username or password.",
@@ -397,9 +402,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
             } else {
             new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
             }
-
+ 
         }
-
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void btnGoToSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToSignUpActionPerformed
@@ -455,7 +459,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         //Checks if the user input is within the system or not
         String sql = "SELECT id, role FROM users WHERE username = ? AND password = ?";
         Connection connect = DatabaseConnection.getConnection();
-
+ 
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -463,26 +467,43 @@ public class LogIn_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return null;
         }
-
+ 
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setString(1, username);
             statement.setString(2, password);
-
+ 
             ResultSet setResult = statement.executeQuery();
-
+ 
             if (setResult.next()) {
-                loggedInUserID = setResult.getInt("id"); //Saves user ID
-                loggedInUsername = username; //Saves username
-
-                return setResult.getString("role"); //Checks whether an "admin" or "user"
+                loggedInUserID = setResult.getInt("id"); 
+                loggedInUsername = username;
+ 
+                return setResult.getString("role");
             }
-
+ 
         } catch (SQLException e) {
             logger.severe("Login error: " + e.getMessage());
         }
         return null;
     }
 
+    private void setAboutPane() {
+        about.setText("It will allow students to submit homework by entering details such as subject, "
+                + "title, and deadline. It stores all tasks in a database and enables users to add, "
+                + "view, update, and delete entries, with a status feature (submitted, pending, or "
+                + "checked) to track progress. This system helps students stay organized and ensures "
+                + "that tasks are properly monitored and managed.");
+        about.setEditable(false);
+        about.setFont(new java.awt.Font("Segoe UI", 0, 14));
+
+        StyledDocument docs = about.getStyledDocument();
+        SimpleAttributeSet justify = new SimpleAttributeSet();
+        StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
+        docs.setParagraphAttributes(0, docs.getLength(), justify, false);
+
+        jScrollPane1.setViewportView(about);
+    }
+    
     /**
      * @param args the command line arguments
      */
