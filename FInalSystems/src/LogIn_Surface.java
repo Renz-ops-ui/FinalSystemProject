@@ -25,8 +25,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
     private int loggedInUserID = -1;
     private String loggedInUsername = "";
 
-    private static final String placeholderUsername = "Enter username";
-    private static final String placeholderPassword = "Enter password";
+    private String holderName = "Enter username";
+    private String holderPass = "Enter password";
 
     public LogIn_Surface() {
         initComponents();
@@ -45,17 +45,14 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         layout = (CardLayout) pnlMain.getLayout();
 
-        //Makes the about info uneditable
         txtaAbout.setEditable(false);
 
-        //Sets placeholder text for both username and password
-        txtInputUsername.setText(placeholderUsername);
+        txtInputUsername.setText(holderName);
         txtInputUsername.setForeground(Color.GRAY);
 
-        txtInputPassword.setText(placeholderPassword);
+        txtInputPassword.setText(holderPass);
         txtInputPassword.setEchoChar((char) 0);
         txtInputPassword.setForeground(Color.GRAY);
-
     }
 
     /**
@@ -375,16 +372,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
         String username = txtInputUsername.getText().trim();
         String password = new String(txtInputPassword.getPassword()).trim();
 
-        if (username.equals(placeholderUsername)) {
-            username = "";
-        }
-        
-        if (password.equals(placeholderPassword)) {
-            password = "";
-        }
-        
         //Checks if username and password input is empty
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.contains(holderName) || password.equals(holderPass)) {
             JOptionPane.showMessageDialog(this,
                     "Please enter both username and password.",
                     "Missing Fields",
@@ -404,8 +393,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
             dispose();
             if ("admin".equalsIgnoreCase(role)) {
                 new AdminDashboard_Surface(loggedInUserID, loggedInUsername, role).setVisible(true);
+                
             } else {
-                new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
+            new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
             }
 
         }
@@ -420,57 +410,46 @@ public class LogIn_Surface extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGoToSignUpActionPerformed
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        // TODO add your handling code here:
         layout.show(pnlMain, "pnlAbout");
-
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        // TODO add your handling code here:\
         layout.show(pnlMain, "pnlLogIn");
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void chckbtnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckbtnShowPasswordActionPerformed
-        //Shows or Hide the password when check
-        txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '\u2022');
-    }//GEN-LAST:event_chckbtnShowPasswordActionPerformed
-
     private void txtInputUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusGained
-        //Makes the input username text be empty when gained focus
-        if (txtInputUsername.getText().equals(placeholderUsername)) {
+        if (txtInputUsername.getText().equals(holderName)) {
             txtInputUsername.setText("");
             txtInputUsername.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_txtInputUsernameFocusGained
 
     private void txtInputUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusLost
-        //Makes the input username text contain the "Enter username" message when lost focus
-
         if (txtInputUsername.getText().trim().isEmpty()) {
-            txtInputUsername.setText(placeholderUsername);
+            txtInputUsername.setText(holderName);
             txtInputUsername.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_txtInputUsernameFocusLost
 
     private void txtInputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusGained
-        //Makes the input password text be empty when gained focus
-        if (new String(txtInputPassword.getPassword()).equals(placeholderPassword)) {
+        if (new String(txtInputPassword.getPassword()).equals(holderPass)) {
             txtInputPassword.setText("");
-            txtInputPassword.setEchoChar('\u2022');
             txtInputPassword.setForeground(Color.BLACK);
+            txtInputPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_txtInputPasswordFocusGained
 
     private void txtInputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusLost
-        //Makes the input username text contain the "Enter username" message when lost focus
         if (new String(txtInputPassword.getPassword()).trim().isEmpty()) {
-            txtInputPassword.setText(placeholderPassword);
+            txtInputPassword.setText(holderPass);
             txtInputPassword.setEchoChar((char) 0);
             txtInputPassword.setForeground(Color.GRAY);
-
-            chckbtnShowPassword.setSelected(false);
         }
     }//GEN-LAST:event_txtInputPasswordFocusLost
+
+    private void chckbtnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckbtnShowPasswordActionPerformed
+        txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '*');
+    }//GEN-LAST:event_chckbtnShowPasswordActionPerformed
 
     private String checkCredentials(String username, String password) {
         //Checks if the user input is within the system or not

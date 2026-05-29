@@ -78,7 +78,8 @@
             <Component class="javax.swing.JTable" name="tblUsers">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="6" rowCount="4">
+                    <Column editable="false" title="#" type="java.lang.Object"/>
                     <Column editable="false" title="Id" type="java.lang.Integer"/>
                     <Column editable="false" title="Username" type="java.lang.String"/>
                     <Column editable="false" title="Role" type="java.lang.String"/>
@@ -88,6 +89,11 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="1">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
@@ -179,6 +185,10 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="Search username..."/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtInputSearchNameFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtInputSearchNameFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnSearchUsername">
               <Properties>
@@ -187,6 +197,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchUsernameActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRefresh">
               <Properties>
@@ -195,6 +208,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Refresh"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDeleteUser">
               <Properties>
@@ -203,6 +219,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete User"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteUserActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -219,9 +238,9 @@
                   <Table columnCount="5" rowCount="4">
                     <Column editable="false" title="Subject" type="java.lang.String"/>
                     <Column editable="false" title="Task Title" type="java.lang.String"/>
-                    <Column editable="false" title="Deadline" type="java.lang.Long"/>
-                    <Column editable="false" title="Status" type="java.lang.Object"/>
-                    <Column editable="false" title="Days Left" type="java.lang.Integer"/>
+                    <Column editable="false" title="Deadline" type="java.lang.String"/>
+                    <Column editable="false" title="Status" type="java.lang.String"/>
+                    <Column editable="false" title="Days Left" type="java.lang.Long"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

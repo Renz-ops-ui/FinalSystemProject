@@ -25,11 +25,11 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
 
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         this.setResizable(false);
         this.setMaximumSize(new java.awt.Dimension(920, 700));
         this.setMinimumSize(new java.awt.Dimension(920, 700));
-        
+
         this.setTitle("Homework Tracker - " + username);
         loadTasks(null, null);
     }
@@ -468,7 +468,6 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
-        // TODO add your handling code here:
         String searchBy = txtInputTitle_Subject.getText().trim();
 
         if (searchBy.isEmpty() || searchBy.equals("Search by Title or Subject")) {
@@ -479,12 +478,10 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
         clearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
         if (selectedTaskID == -1) {
             JOptionPane.showMessageDialog(this,
                     "Please select a task from the table first.",
@@ -534,7 +531,6 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
         if (selectedTaskID == -1) {
             JOptionPane.showMessageDialog(this,
                     "Please select a task from the table first.",
@@ -599,7 +595,6 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTaskActionPerformed
-        // TODO add your handling code here:
         String subject = jcbSubjectSelection.getSelectedItem().toString();
         String title = txtInputTaskName.getText().trim();
         String deadline = txtInputDeadlineDate.getText().trim();
@@ -659,17 +654,14 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddTaskActionPerformed
 
     private void btnDataStructueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataStructueActionPerformed
-        // TODO add your handling code here:
         loadBySubject("Data Structure");
     }//GEN-LAST:event_btnDataStructueActionPerformed
 
     private void btnComProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComProgActionPerformed
-        // TODO add your handling code here:
         loadBySubject("Computer Programming");
     }//GEN-LAST:event_btnComProgActionPerformed
 
     private void btnComNetworkinngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComNetworkinngActionPerformed
-        // TODO add your handling code here:
         loadBySubject("Computer Networking");
     }//GEN-LAST:event_btnComNetworkinngActionPerformed
 
@@ -679,32 +671,26 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOPSystemActionPerformed
 
     private void btnOverdueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOverdueActionPerformed
-        // TODO add your handling code here:
         loadTasks("Overdue", null);
     }//GEN-LAST:event_btnOverdueActionPerformed
 
     private void btnDone_CheckedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDone_CheckedActionPerformed
-        // TODO add your handling code here:
         loadTasks("Done/Checked", null);
     }//GEN-LAST:event_btnDone_CheckedActionPerformed
 
     private void btnSubmittedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmittedActionPerformed
-        // TODO add your handling code here:
         loadTasks("Submitted", null);
     }//GEN-LAST:event_btnSubmittedActionPerformed
 
     private void btnPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingActionPerformed
-        // TODO add your handling code here:
         loadTasks("Pending", null);
     }//GEN-LAST:event_btnPendingActionPerformed
 
     private void btnAllTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllTaskActionPerformed
-        // TODO add your handling code here:
         loadTasks(null, null);
     }//GEN-LAST:event_btnAllTaskActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to log out?",
                 "Confirm Log-Out",
@@ -718,7 +704,6 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnAccountManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagerActionPerformed
-        // TODO add your handling code here:
         dispose();
         new AccountManager_Surface(userID, username, role).setVisible(true);
     }//GEN-LAST:event_btnAccountManagerActionPerformed

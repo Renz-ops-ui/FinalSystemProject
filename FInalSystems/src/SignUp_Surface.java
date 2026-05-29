@@ -1,5 +1,6 @@
 package mysystem;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,9 @@ import javax.swing.JOptionPane;
 public class SignUp_Surface extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SignUp_Surface.class.getName());
+
+    private String holderUsername = "Aisa";
+    private String holderPass = "aisa1234";
 
     public SignUp_Surface() {
         initComponents();
@@ -28,9 +32,10 @@ public class SignUp_Surface extends javax.swing.JFrame {
         //Fixes the jSpinner to show the proper format MM-DD-YYYY
         spnSelectBirthday.setEditor(new javax.swing.JSpinner.DateEditor(spnSelectBirthday, "MM-dd-yyyy"));
 
-        //Shows or Hide the password when check
-        chckbtnShowPassword.addActionListener(e
-                -> txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '\u2022'));
+        //Sets placeholders
+        txtInputUsername.setText(holderUsername);
+        txtInputUsername.setForeground(Color.GRAY);
+
     }
 
     /**
@@ -86,6 +91,14 @@ public class SignUp_Surface extends javax.swing.JFrame {
         pnlSignUp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         txtInputUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtInputUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtInputUsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInputUsernameFocusLost(evt);
+            }
+        });
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -100,8 +113,21 @@ public class SignUp_Surface extends javax.swing.JFrame {
         lblUsername.setText("USERNAME");
 
         txtInputPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtInputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtInputPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInputPasswordFocusLost(evt);
+            }
+        });
 
         chckbtnShowPassword.setText("Show password");
+        chckbtnShowPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chckbtnShowPasswordActionPerformed(evt);
+            }
+        });
 
         lblGender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblGender.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -169,7 +195,7 @@ public class SignUp_Surface extends javax.swing.JFrame {
                     .addGroup(pnlSignUpLayout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(rbtnFemale)
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSignUpLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(lblGender)
@@ -233,10 +259,10 @@ public class SignUp_Surface extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAlreadyHaveAnAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGoToLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGoToLogIn)
                 .addContainerGap())
         );
 
@@ -295,6 +321,40 @@ public class SignUp_Surface extends javax.swing.JFrame {
         dispose();
         new LogIn_Surface().setVisible(true);
     }//GEN-LAST:event_btnGoToLogInActionPerformed
+
+    private void chckbtnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckbtnShowPasswordActionPerformed
+        txtInputPassword.setEchoChar(chckbtnShowPassword.isSelected() ? (char) 0 : '*');
+    }//GEN-LAST:event_chckbtnShowPasswordActionPerformed
+
+    private void txtInputUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusGained
+        if (txtInputUsername.getText().equals(holderUsername)) {
+            txtInputUsername.setText("");
+            txtInputUsername.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtInputUsernameFocusGained
+
+    private void txtInputUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputUsernameFocusLost
+        if (txtInputUsername.getText().trim().isEmpty()) {
+            txtInputUsername.setText(holderUsername);
+            txtInputUsername.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtInputUsernameFocusLost
+
+    private void txtInputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusGained
+        if (new String(txtInputPassword.getPassword()).equals(holderPass)) {
+            txtInputPassword.setText("");
+            txtInputPassword.setEchoChar('*');
+            txtInputPassword.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtInputPasswordFocusGained
+
+    private void txtInputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputPasswordFocusLost
+        if (new String(txtInputPassword.getPassword()).trim().isEmpty()) {
+            txtInputPassword.setText(holderPass);
+            txtInputPassword.setEchoChar((char) 0);
+            txtInputPassword.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtInputPasswordFocusLost
 
     private void registerUser(String username, String password) {
         //Database registration

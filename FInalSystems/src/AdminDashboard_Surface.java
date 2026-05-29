@@ -1,10 +1,12 @@
 package mysystem;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,17 +15,11 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboard_Surface.class.getName());
 
     private int adminID;
-//    private int selectedUserIDs = -1;
+    private int selectedUserIDs = -1;
     private String adminsUsername;
     private String adminRole;
-    
-    private DefaultTableModel tableModel;
-    
-    private static final int column_ID = 0;
-    private static final int column_Username = 1;
-    private static final int column_Role = 2;
-    private static final int column_Gender = 3;
-    private static final int column_Birthday = 4;
+
+    private String holderSearch = "Search Username...";
 
     public AdminDashboard_Surface(int adminID, String adminsUsername, String adminRole) {
         this.adminID = adminID;
@@ -32,15 +28,24 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         this.setResizable(false);
         this.setMaximumSize(new java.awt.Dimension(920, 700));
         this.setMinimumSize(new java.awt.Dimension(920, 700));
-        
+
         this.setTitle("Admin Dashboard - " + adminsUsername);
-        
-        loadAllUsers("");
+
+        loadAllUsers();
         loadSummary();
+
+        txtInputSearchName.setText(holderSearch);
+        txtInputSearchName.setForeground(Color.GRAY);
+
+        tblUsers.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                loadSelectedUserTasks();
+            }
+        });
     }
 
     /**
@@ -79,20 +84,20 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
         tblUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Username", "Role", "Gender", "Birthday"
+                "#", "Id", "Username", "Role", "Gender", "Birthday"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -112,6 +117,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             tblUsers.getColumnModel().getColumn(2).setResizable(false);
             tblUsers.getColumnModel().getColumn(3).setResizable(false);
             tblUsers.getColumnModel().getColumn(4).setResizable(false);
+            tblUsers.getColumnModel().getColumn(5).setResizable(false);
         }
 
         lblAllUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -121,15 +127,38 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
         txtInputSearchName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtInputSearchName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtInputSearchName.setText("Search username...");
+        txtInputSearchName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtInputSearchNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInputSearchNameFocusLost(evt);
+            }
+        });
 
         btnSearchUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSearchUsername.setText("Search");
+        btnSearchUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchUsernameActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         btnDeleteUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDeleteUser.setText("Delete User");
+        btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -173,7 +202,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -334,16 +363,52 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
         new LogIn_Surface().setVisible(true);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    
-    private void loadAllUsers(String filter) {
-        tableModel.setRowCount(0);
-        
-        String sql = filter.isEmpty()
-                ? "SELECT id, username, role, gender, birthday FROM users ORDER BY id"
-                : "SELECT id, username, role, gender, birthday FROM users WHERE username LIKE ? ORDER BY id";
+    private void txtInputSearchNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputSearchNameFocusGained
+        if (txtInputSearchName.getText().equals(holderSearch)) {
+            txtInputSearchName.setText("");
+            txtInputSearchName.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtInputSearchNameFocusGained
+
+    private void txtInputSearchNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputSearchNameFocusLost
+        if (txtInputSearchName.getText().trim().isEmpty()) {
+            txtInputSearchName.setText(holderSearch);
+            txtInputSearchName.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtInputSearchNameFocusLost
+
+    private void btnSearchUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchUsernameActionPerformed
+        loadAllUsers();
+    }//GEN-LAST:event_btnSearchUsernameActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        txtInputSearchName.setText(holderSearch);
+        txtInputSearchName.setForeground(Color.GRAY);
+        loadAllUsers();
+        loadSummary();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        deleteUser();
+    }//GEN-LAST:event_btnDeleteUserActionPerformed
+
+    private void loadAllUsers() {
+        DefaultTableModel model = (DefaultTableModel) tblUsers.getModel();
+        model.setRowCount(0);
+
+        selectedUserIDs = -1;
+
+        String searchInput = txtInputSearchName.getText().trim();
+
+        boolean isSearching = !searchInput.isEmpty() && !searchInput.equals(holderSearch);
+
+        StringBuilder sql = new StringBuilder("SELECT id, username, role, gender, birthday FROM users");
+        if (isSearching) {
+            sql.append(" WHERE username LIKE ?");
+        }
+        sql.append(" ORDER BY id ASC");
+
         Connection connect = DatabaseConnection.getConnection();
-                
-        
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -351,38 +416,216 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-               
-        try (PreparedStatement statement = connect.prepareStatement(sql)){
-            if (!filter.isEmpty()) {
-                statement.setString(1, "%" + filter + "%");
+
+        try (PreparedStatement stmt = connect.prepareStatement(sql.toString())) {
+            if (isSearching) {
+                stmt.setString(1, "%" + searchInput + "%");
             }
-            
-            ResultSet rs = statement.executeQuery();
-            int count = 0;
-            
+
+            ResultSet rs = stmt.executeQuery();
+            int rowNum = 1;
             while (rs.next()) {
-                count++;
-                
-                Vector <Object> row = new Vector<>();
-                
-                row.add(rs.getInt("id"));
-                row.add(rs.getString("username"));
-                row.add(rs.getString("role") != null ? rs.getString("role") : "user");
-                row.add(rs.getString("gender") != null ? rs.getString("gender") : "-");
-                row.add(rs.getString("birthday") != null ? rs.getString("birthday") : "-");
-                
-                tableModel.addRow(row);
+                int id = rs.getInt("id");
+                String uname = rs.getString("username");
+                String role = rs.getString("role");
+                String gender = rs.getString("gender");
+                String birthday = rs.getString("birthday");
+
+                model.addRow(new Object[]{
+                    rowNum,
+                    id,
+                    uname,
+                    role,
+                    gender != null ? gender : "N/A",
+                    birthday != null ? birthday : "N/A"
+                });
+
+                tblUsers.putClientProperty("uid_" + (rowNum - 1), id);
+                rowNum++;
             }
-            
-            
-            
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            logger.severe("Load users error: " + e.getMessage());
+            showErr("Error loading users: " + e.getMessage());
         }
-        
+
+        ((DefaultTableModel) tblTasks.getModel()).setRowCount(0);
+        lblTasksFor.setText("Tasks — select a user above to view their tasks");
+
     }
-    
-    private void loadSummary(){
-        
+
+    private void loadSelectedUserTasks() {
+        int row = tblUsers.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+
+        Object id = tblUsers.getClientProperty("uid_" + row);
+        if (id == null) {
+            return;
+        }
+
+        selectedUserIDs = (int) id;
+
+        String selectedUser = (String) tblUsers.getValueAt(row, 2);
+        lblTasksFor.setText("Tasks for: " + selectedUser + "  (id=" + selectedUserIDs + ")");
+
+        DefaultTableModel model = (DefaultTableModel) tblTasks.getModel();
+        model.setRowCount(0);
+
+        String sql = "SELECT id, subject, title, deadline, status FROM tasks " + "WHERE user_id = ? ORDER BY deadline ASC";
+
+        Connection connect = DatabaseConnection.getConnection();
+        if (connect == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Cannot connect to database.",
+                    "Database Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try (PreparedStatement stmt = connect.prepareStatement(sql)) {
+            stmt.setInt(1, selectedUserIDs);
+            ResultSet rs = stmt.executeQuery();
+            int rowNum = 1;
+
+            while (rs.next()) {
+                String deadline = rs.getString("deadline");
+                long daysLeft = daysLeft(deadline);
+                String status = rs.getString("status");
+
+                if (daysLeft < 0 && !status.equals("Done/Checked")
+                        && !status.equals("Submitted")) {
+                    status = "Overdue";
+                }
+
+                model.addRow(new Object[]{
+                    rs.getString("subject"),
+                    rs.getString("title"),
+                    deadline,
+                    status,
+                    daysLeft
+                });
+            }
+
+        } catch (SQLException e) {
+            logger.severe("Load tasks error: " + e.getMessage());
+            showErr("Error loading tasks: " + e.getMessage());
+        }
+
+    }
+
+    private void loadSummary() {
+        Connection connect = DatabaseConnection.getConnection();
+        if (connect == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Cannot connect to database.",
+                    "Database Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            ResultSet rs1 = connect.createStatement()
+                    .executeQuery("SELECT COUNT(*) FROM users");
+            ResultSet rs2 = connect.createStatement()
+                    .executeQuery("SELECT COUNT(*) FROM tasks");
+            ResultSet rs3 = connect.createStatement()
+                    .executeQuery("SELECT COUNT(*) FROM tasks WHERE status = 'Overdue'");
+
+            int totalUsers = rs1.next() ? rs1.getInt(1) : 0;
+            int totalTasks = rs2.next() ? rs2.getInt(1) : 0;
+            int overdue = rs3.next() ? rs3.getInt(1) : 0;
+
+            lblLoggedAs.setText("Logged in as: " + adminsUsername
+                    + "   |   Users: " + totalUsers
+                    + "   Tasks: " + totalTasks
+                    + "   Overdue: " + overdue);
+
+        } catch (SQLException e) {
+            logger.warning("Summary load error: " + e.getMessage());
+        }
+    }
+
+    private void deleteUser() {
+        if (selectedUserIDs == -1) {
+            showWarn("Please select a user from the table first.");
+            return;
+        }
+
+        if (selectedUserIDs == adminID) {
+            showWarn("You cannot delete your own admin account.");
+            return;
+        }
+
+        int row = tblUsers.getSelectedRow();
+        String targetUsername = (String) tblUsers.getValueAt(row, 2);
+        String targetRole = (String) tblUsers.getValueAt(row, 3);
+
+        if ("admin".equalsIgnoreCase(targetRole)) {
+            showWarn("Cannot delete another admin account.");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Delete user \"" + targetUsername + "\" and ALL their tasks?\nThis cannot be undone.",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        String sql = "DELETE FROM users WHERE id = ?";
+        Connection connect = DatabaseConnection.getConnection();
+
+        if (connect == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Cannot connect to database.",
+                    "Database Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try (PreparedStatement stmt = connect.prepareStatement(sql)) {
+            stmt.setInt(1, selectedUserIDs);
+            int rows = stmt.executeUpdate();
+
+            if (rows > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "User \"" + targetUsername + "\" deleted successfully.",
+                        "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                selectedUserIDs = -1;
+                loadAllUsers();  // refresh both tables
+                loadSummary();   // refresh the counts
+            } else {
+                showErr("Delete failed — user not found.");
+            }
+
+        } catch (SQLException e) {
+            logger.severe("Delete user error: " + e.getMessage());
+            showErr("Error deleting user: " + e.getMessage());
+        }
+
+    }
+
+    private long daysLeft(String deadlineStr) {
+        try {
+            return ChronoUnit.DAYS.between(
+                    LocalDate.now(),
+                    LocalDate.parse(deadlineStr)
+            );
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private void showErr(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void showWarn(String msg) {
+        JOptionPane.showMessageDialog(this, msg, "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
     /**

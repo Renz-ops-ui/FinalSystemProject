@@ -1,10 +1,11 @@
+package mysystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /*Connects the system to sql database
-DB_URL -> name of database in sql
+DB_URL -> name of database in sql along with its link
 DB_USER -> MySQL username
 DB_PASSWORD -> MySQL password
 
@@ -12,8 +13,8 @@ DB_PASSWORD -> MySQL password
 public class DatabaseConnection {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/login_system";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "admin1234";
+    private static final String DB_USER = "mysystem_user";
+    private static final String DB_PASSWORD = "mysystem1234";
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DatabaseConnection.class.getName());
 
