@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
@@ -24,12 +25,12 @@ public class LogIn_Surface extends javax.swing.JFrame {
     
      */
     private CardLayout layout;
-    
+
     private JTextPane about = new JTextPane();
- 
+
     private int loggedInUserID = -1;
     private String loggedInUsername = "";
- 
+
     private String holderName = "Enter username";
     private String holderPass = "Enter password";
 
@@ -49,7 +50,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         this.setTitle("Log In");
 
         layout = (CardLayout) pnlMain.getLayout();
-        
+
         setAboutPane();
 
         txtInputUsername.setText(holderName);
@@ -58,6 +59,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
         txtInputPassword.setText(holderPass);
         txtInputPassword.setEchoChar((char) 0);
         txtInputPassword.setForeground(Color.GRAY);
+        
+        applyTheme();
     }
 
     /**
@@ -98,10 +101,11 @@ public class LogIn_Surface extends javax.swing.JFrame {
         btnReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(500, 450));
+        setBackground(new java.awt.Color(26, 31, 46));
         setMinimumSize(new java.awt.Dimension(500, 450));
         setSize(new java.awt.Dimension(500, 450));
 
+        pnlSide.setBackground(new java.awt.Color(36, 43, 61));
         pnlSide.setMaximumSize(new java.awt.Dimension(160, 450));
         pnlSide.setMinimumSize(new java.awt.Dimension(160, 450));
 
@@ -113,6 +117,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
         lblHomework.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHomework.setText("Homework");
 
+        btnAbout.setBackground(new java.awt.Color(61, 90, 128));
+        btnAbout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAbout.setForeground(new java.awt.Color(232, 237, 245));
         btnAbout.setText("About");
         btnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,11 +176,13 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         getContentPane().add(pnlSide, java.awt.BorderLayout.LINE_START);
 
+        pnlMain.setBackground(new java.awt.Color(36, 43, 61));
         pnlMain.setMaximumSize(new java.awt.Dimension(340, 450));
         pnlMain.setMinimumSize(new java.awt.Dimension(340, 450));
         pnlMain.setPreferredSize(new java.awt.Dimension(340, 450));
         pnlMain.setLayout(new java.awt.CardLayout());
 
+        pnlLogIn.setBackground(new java.awt.Color(36, 43, 61));
         pnlLogIn.setMaximumSize(new java.awt.Dimension(340, 450));
         pnlLogIn.setMinimumSize(new java.awt.Dimension(340, 450));
         pnlLogIn.setPreferredSize(new java.awt.Dimension(340, 450));
@@ -211,6 +220,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
         pnlLogIn.add(lblUsername, gridBagConstraints);
 
+        txtInputUsername.setBackground(new java.awt.Color(26, 31, 46));
+        txtInputUsername.setForeground(new java.awt.Color(232, 237, 245));
         txtInputUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtInputUsername.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -242,6 +253,8 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
         pnlLogIn.add(lblPassword, gridBagConstraints);
 
+        txtInputPassword.setBackground(new java.awt.Color(26, 31, 46));
+        txtInputPassword.setForeground(new java.awt.Color(232, 237, 245));
         txtInputPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtInputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -260,6 +273,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         pnlLogIn.add(txtInputPassword, gridBagConstraints);
 
+        chckbtnShowPassword.setForeground(new java.awt.Color(232, 237, 245));
         chckbtnShowPassword.setText("Show password");
         chckbtnShowPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +288,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
         pnlLogIn.add(chckbtnShowPassword, gridBagConstraints);
 
+        btnLogIn.setBackground(new java.awt.Color(126, 203, 161));
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogIn.setForeground(new java.awt.Color(26, 31, 46));
         btnLogIn.setText("Log In");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +311,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(13, 0, 12, 0);
         pnlLogIn.add(jSeparator1, gridBagConstraints);
 
+        lblNoAccountYet.setForeground(new java.awt.Color(232, 237, 245));
         lblNoAccountYet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNoAccountYet.setText("No account yet?");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -304,7 +321,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
         pnlLogIn.add(lblNoAccountYet, gridBagConstraints);
 
+        btnGoToSignUp.setBackground(new java.awt.Color(61, 90, 128));
         btnGoToSignUp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGoToSignUp.setForeground(new java.awt.Color(232, 237, 245));
         btnGoToSignUp.setText("Go to Sign Up");
         btnGoToSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,6 +339,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         pnlMain.add(pnlLogIn, "pnlLogIn");
 
+        pnlAbout.setBackground(new java.awt.Color(36, 43, 61));
         pnlAbout.setMaximumSize(new java.awt.Dimension(340, 450));
         pnlAbout.setMinimumSize(new java.awt.Dimension(340, 450));
         pnlAbout.setPreferredSize(new java.awt.Dimension(340, 450));
@@ -332,6 +352,9 @@ public class LogIn_Surface extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("About");
 
+        btnReturn.setBackground(new java.awt.Color(61, 90, 128));
+        btnReturn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReturn.setForeground(new java.awt.Color(232, 237, 245));
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,7 +411,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         //Checks if role is user/admin
         String role = checkCredentials(username, password);
- 
+
         if (role == null) {
             JOptionPane.showMessageDialog(this,
                     "Invalid username or password.",
@@ -398,11 +421,11 @@ public class LogIn_Surface extends javax.swing.JFrame {
             dispose();
             if ("admin".equalsIgnoreCase(role)) {
                 new AdminDashboard_Surface(loggedInUserID, loggedInUsername, role).setVisible(true);
-                
+
             } else {
-            new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
+                new HomeworkTrackerSystem(loggedInUserID, loggedInUsername, role).setVisible(true);
             }
- 
+
         }
     }//GEN-LAST:event_btnLogInActionPerformed
 
@@ -459,7 +482,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
         //Checks if the user input is within the system or not
         String sql = "SELECT id, role FROM users WHERE username = ? AND password = ?";
         Connection connect = DatabaseConnection.getConnection();
- 
+
         if (connect == null) {
             JOptionPane.showMessageDialog(this,
                     "Cannot connect to database.",
@@ -467,20 +490,20 @@ public class LogIn_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return null;
         }
- 
+
         try (PreparedStatement statement = connect.prepareStatement(sql)) {
             statement.setString(1, username);
             statement.setString(2, password);
- 
+
             ResultSet setResult = statement.executeQuery();
- 
+
             if (setResult.next()) {
-                loggedInUserID = setResult.getInt("id"); 
+                loggedInUserID = setResult.getInt("id");
                 loggedInUsername = username;
- 
+
                 return setResult.getString("role");
             }
- 
+
         } catch (SQLException e) {
             logger.severe("Login error: " + e.getMessage());
         }
@@ -503,7 +526,47 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(about);
     }
-    
+
+    private void applyTheme() {
+        getContentPane().setBackground(AppTheme.BACKGROUND);
+
+        // Side panel
+        pnlSide.setBackground(AppTheme.SURFACE);
+        pnlSide.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, AppTheme.BORDER));
+        LOGO.setForeground(AppTheme.ACCENT_GREEN);
+        AppTheme.styleLabelSubtitle(lblHomework);
+        AppTheme.styleLabelSubtitle(lblTracker);
+        AppTheme.styleLabel(lblSystem);
+        lblSystem.setForeground(AppTheme.TEXT_MUTED);
+        AppTheme.styleBtnSecondary(btnAbout);
+        AppTheme.styleSeparator(jSeparator2);
+        AppTheme.styleSeparator(jSeparator3);
+
+        // Login panel
+        pnlLogIn.setBackground(AppTheme.BACKGROUND);
+        lblWelcomeMSG.setFont(AppTheme.FONT_TITLE);
+        lblWelcomeMSG.setForeground(AppTheme.TEXT_PRIMARY);
+        lblSignInMSG.setFont(AppTheme.FONT_SMALL);
+        lblSignInMSG.setForeground(AppTheme.TEXT_MUTED);
+        AppTheme.styleLabelHeader(lblUsername);
+        AppTheme.styleLabelHeader(lblPassword);
+        AppTheme.styleTextField(txtInputUsername);
+        AppTheme.stylePasswordField(txtInputPassword);
+        AppTheme.styleCheckBox(chckbtnShowPassword);
+        AppTheme.styleBtnPrimary(btnLogIn);
+        AppTheme.styleSeparator(jSeparator1);
+        AppTheme.styleLabelMuted(lblNoAccountYet);
+        AppTheme.styleBtnSecondary(btnGoToSignUp);
+
+        // About panel
+        pnlAbout.setBackground(AppTheme.BACKGROUND);
+        jLabel1.setFont(AppTheme.FONT_SUBTITLE);
+        jLabel1.setForeground(AppTheme.TEXT_PRIMARY);
+        AppTheme.styleTextArea(txtaAbout);
+        AppTheme.styleScrollPane(jScrollPane1);
+        AppTheme.styleBtnSecondary(btnReturn);
+    }
+
     /**
      * @param args the command line arguments
      */

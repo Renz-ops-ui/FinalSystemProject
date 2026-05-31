@@ -1,5 +1,4 @@
 
-
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,6 +47,8 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                 loadSelectedUserTasks();
             }
         });
+        
+        applyTheme();
     }
 
     /**
@@ -608,6 +611,39 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
     private void showWarn(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    private void applyTheme() {
+        getContentPane().setBackground(AppTheme.BACKGROUND);
+
+        pnlTitle.setBackground(AppTheme.SURFACE);
+        pnlTitle.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 1, 0, AppTheme.BORDER),
+                BorderFactory.createEmptyBorder(4, 8, 4, 8)));
+
+        AppTheme.styleLabelTitle(lblAdminDashboard);
+        AppTheme.styleLabel(lblLoggedAs);
+//        for (JLabel lbl : new JLabel[]{lblTotalUsers, lblTotalTasks}) {
+//            AppTheme.styleLabel(lbl);
+//        }
+
+        AppTheme.styleSeparator(jSeparator1);
+        AppTheme.styleBtnDanger(btnLogOut);
+
+        pnlMainDashboard.setBackground(AppTheme.BACKGROUND);
+        AppTheme.styleLabelHeader(lblAllUser);
+        AppTheme.styleTextField(txtInputSearchName);
+        AppTheme.styleBtnSecondary(btnSearchUsername);
+        AppTheme.styleBtnSecondary(btnRefresh);
+        AppTheme.styleBtnDanger(btnDeleteUser);
+
+        AppTheme.styleTable(tblUsers);
+        AppTheme.styleScrollPane(jScrollPane1);
+        AppTheme.styleTable(tblTasks);
+        AppTheme.styleScrollPane(jScrollPane2);
+
+        AppTheme.styleLabelHeader(lblUserTasks);
+        AppTheme.styleLabelMuted(lblTasksFor);
     }
 
     /**

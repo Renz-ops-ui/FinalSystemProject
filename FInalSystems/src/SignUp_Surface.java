@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class SignUp_Surface extends javax.swing.JFrame {
@@ -34,7 +35,9 @@ public class SignUp_Surface extends javax.swing.JFrame {
         //Sets placeholders
         txtInputUsername.setText(holderUsername);
         txtInputUsername.setForeground(Color.GRAY);
-
+        
+        applyTheme();
+        
     }
 
     /**
@@ -422,6 +425,32 @@ public class SignUp_Surface extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    private void applyTheme() {
+        getContentPane().setBackground(AppTheme.BACKGROUND);
+//        mainPanel.setBackground(AppTheme.BACKGROUND);
+//        headerPanel.setBackground(AppTheme.BACKGROUND);
+//        formPanel.setBackground(AppTheme.SURFACE);
+//        formPanel.setBorder(AppTheme.paddedBorder(8));
+//        footerPanel.setBackground(AppTheme.BACKGROUND);
+
+        LOGO.setForeground(AppTheme.ACCENT_GREEN);
+        AppTheme.styleLabelSubtitle(lblCreateMSG);
+        AppTheme.styleLabelMuted(lblRegisterMSG);
+        AppTheme.styleSeparator(jSeparator1);
+
+        for (JLabel lbl : new JLabel[]{lblUsername, lblPassword, lblGender, lblBirthday}) {
+            AppTheme.styleLabelHeader(lbl);
+        }
+        AppTheme.styleTextField(txtInputUsername);
+        AppTheme.stylePasswordField(txtInputPassword);
+        AppTheme.styleCheckBox(chckbtnShowPassword);
+        AppTheme.styleRadioButton(rbtnMale);
+        AppTheme.styleRadioButton(rbtnFemale);
+        AppTheme.styleBtnPrimary(btnCreateAccount);
+        AppTheme.styleBtnSecondary(btnGoToLogIn);
+        AppTheme.styleLabelMuted(lblAlreadyHaveAnAccount);
     }
 
     /**
