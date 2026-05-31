@@ -529,6 +529,7 @@ public class LogIn_Surface extends javax.swing.JFrame {
 
     private void applyTheme() {
         getContentPane().setBackground(AppTheme.BACKGROUND);
+        AppTheme.applyWindowIcon(this);
 
         // Side panel
         pnlSide.setBackground(AppTheme.SURFACE);

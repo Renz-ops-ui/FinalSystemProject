@@ -429,28 +429,32 @@ public class SignUp_Surface extends javax.swing.JFrame {
 
     private void applyTheme() {
         getContentPane().setBackground(AppTheme.BACKGROUND);
-//        mainPanel.setBackground(AppTheme.BACKGROUND);
-//        headerPanel.setBackground(AppTheme.BACKGROUND);
-//        formPanel.setBackground(AppTheme.SURFACE);
-//        formPanel.setBorder(AppTheme.paddedBorder(8));
-//        footerPanel.setBackground(AppTheme.BACKGROUND);
-
-        LOGO.setForeground(AppTheme.ACCENT_GREEN);
+        AppTheme.applyWindowIcon(this);
+ 
+        SignUpPanel.setBackground(AppTheme.BACKGROUND);
+        pnlSignUp.setBackground(AppTheme.SURFACE);
+        pnlSignUp.setBorder(AppTheme.panelBorder());
+ 
+        AppTheme.applyLogoLabel(LOGO, 100, 100);
         AppTheme.styleLabelSubtitle(lblCreateMSG);
         AppTheme.styleLabelMuted(lblRegisterMSG);
         AppTheme.styleSeparator(jSeparator1);
-
+ 
         for (JLabel lbl : new JLabel[]{lblUsername, lblPassword, lblGender, lblBirthday}) {
             AppTheme.styleLabelHeader(lbl);
         }
+        
         AppTheme.styleTextField(txtInputUsername);
         AppTheme.stylePasswordField(txtInputPassword);
         AppTheme.styleCheckBox(chckbtnShowPassword);
         AppTheme.styleRadioButton(rbtnMale);
         AppTheme.styleRadioButton(rbtnFemale);
+        AppTheme.styleSpinner(spnSelectBirthday);
         AppTheme.styleBtnPrimary(btnCreateAccount);
         AppTheme.styleBtnSecondary(btnGoToLogIn);
         AppTheme.styleLabelMuted(lblAlreadyHaveAnAccount);
+
+        txtInputUsername.setForeground(java.awt.Color.GRAY);
     }
 
     /**

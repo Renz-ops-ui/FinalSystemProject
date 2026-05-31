@@ -47,7 +47,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                 loadSelectedUserTasks();
             }
         });
-        
+
         applyTheme();
     }
 
@@ -581,8 +581,8 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
                         "User \"" + targetUsername + "\" deleted successfully.",
                         "Deleted", JOptionPane.INFORMATION_MESSAGE);
                 selectedUserIDs = -1;
-                loadAllUsers();  // refresh both tables
-                loadSummary();   // refresh the counts
+                loadAllUsers();
+                loadSummary();
             } else {
                 showErr("Delete failed — user not found.");
             }
@@ -615,6 +615,7 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
     private void applyTheme() {
         getContentPane().setBackground(AppTheme.BACKGROUND);
+        AppTheme.applyWindowIcon(this);
 
         pnlTitle.setBackground(AppTheme.SURFACE);
         pnlTitle.setBorder(BorderFactory.createCompoundBorder(
@@ -623,9 +624,6 @@ public class AdminDashboard_Surface extends javax.swing.JFrame {
 
         AppTheme.styleLabelTitle(lblAdminDashboard);
         AppTheme.styleLabel(lblLoggedAs);
-//        for (JLabel lbl : new JLabel[]{lblTotalUsers, lblTotalTasks}) {
-//            AppTheme.styleLabel(lbl);
-//        }
 
         AppTheme.styleSeparator(jSeparator1);
         AppTheme.styleBtnDanger(btnLogOut);

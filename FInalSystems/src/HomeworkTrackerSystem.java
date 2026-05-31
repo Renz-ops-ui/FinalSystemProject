@@ -36,7 +36,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
 
         this.setTitle("Homework Tracker - " + username);
         loadTasks(null, null);
-        
+
         applyTheme();
     }
 
@@ -929,7 +929,8 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
 
     private void applyTheme() {
         getContentPane().setBackground(AppTheme.BACKGROUND);
-
+        AppTheme.applyWindowIcon(this);
+        
         pnlTitle.setBackground(AppTheme.SURFACE);
         pnlTitle.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, AppTheme.BORDER));
         lblSystemName.setFont(new Font("Segoe UI", Font.BOLD, 22));
@@ -948,6 +949,7 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
             btnDone_Checked, btnOPSystem, btnComNetworkinng, btnComProg, btnDataStructue}) {
             AppTheme.styleBtnSecondary(b);
         }
+        
         AppTheme.styleBtnDanger(btnOverdue);
         AppTheme.styleBtnPrimary(btnAccountManager);
         AppTheme.styleBtnDanger(btnLogOut);
@@ -955,9 +957,11 @@ public class HomeworkTrackerSystem extends javax.swing.JFrame {
         pnlMain.setBackground(AppTheme.BACKGROUND);
         AppTheme.styleLabelSubtitle(lblTaskInputForm);
         AppTheme.styleProgressBar(jProgressBar1);
+        
         for (JLabel lbl : new JLabel[]{lblSubject, lblTaskTitle, lblDeadline, lblStatus, lblSearch}) {
             AppTheme.styleLabelHeader(lbl);
         }
+        
         AppTheme.styleComboBox(jcbSubjectSelection);
         AppTheme.styleComboBox(jcbStatusSelection);
         AppTheme.styleTextField(txtInputTaskName);

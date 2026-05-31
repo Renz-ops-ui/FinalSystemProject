@@ -484,15 +484,16 @@ public class AccountManager_Surface extends javax.swing.JFrame {
 
     private void applyTheme() {
         getContentPane().setBackground(AppTheme.BACKGROUND);
-
+        AppTheme.applyWindowIcon(this);
+ 
         pnlTop.setBackground(AppTheme.SURFACE);
         pnlTop.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, AppTheme.BORDER));
-        LOGO.setForeground(AppTheme.ACCENT_GREEN);
+        AppTheme.applyLogoLabel(LOGO, 64, 64);
         lblAccountManager.setFont(AppTheme.FONT_SUBTITLE);
         lblAccountManager.setForeground(AppTheme.TEXT_PRIMARY);
         lblHello_Acc.setFont(AppTheme.FONT_BODY);
         lblHello_Acc.setForeground(AppTheme.TEXT_MUTED);
-
+ 
         pnlSide.setBackground(AppTheme.SURFACE);
         pnlSide.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, AppTheme.BORDER));
         pnlSide.setPreferredSize(new Dimension(165, 0));
@@ -509,17 +510,17 @@ public class AccountManager_Surface extends javax.swing.JFrame {
         AppTheme.styleLabel(lblBirthdate);
         AppTheme.styleLabelMuted(lblWhatBirthdate);
         AppTheme.styleBtnDanger(btnLogOut);
-
+ 
         pnlMain.setBackground(AppTheme.BACKGROUND);
         pnlAccountInfo.setBackground(AppTheme.SURFACE);
         pnlAccountInfo.setBorder(AppTheme.paddedBorder(8));
         pnlPasswordInfo.setBackground(AppTheme.SURFACE);
         pnlPasswordInfo.setBorder(AppTheme.paddedBorder(8));
-
+ 
         AppTheme.styleLabelSubtitle(lblAccountInfo);
         AppTheme.styleLabelHeader(lblUsername);
         AppTheme.styleTextField(txtUsername);
-
+ 
         AppTheme.styleLabelSubtitle(lblPasswordInfo);
         AppTheme.stylePasswordField(txtPassword);
         AppTheme.styleCheckBox(chckbtnShowPassword);
